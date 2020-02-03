@@ -1,35 +1,39 @@
 /*
- * This file is part of the UCB release of Plan 9. It is subject to the license
- * terms in the LICENSE file found in the top-level directory of this
- * distribution and at http://akaros.cs.berkeley.edu/files/Plan9License. No
- * part of the UCB release of Plan 9, including this file, may be copied,
- * modified, propagated, or distributed except according to the terms contained
- * in the LICENSE file.
+ * Copyright (c) 2005-2014 Rich Felker, et al.
+ * Copyright (c) 2015-2020 HarveyOS et al.
+ *
+ * Use of this source code is governed by a MIT-style
+ * license that can be found in the LICENSE.mit file.
  */
 
-#include <math.h>
-/*
- * floor and ceil-- greatest integer <= arg
- * (resp least >=)
- */
+#include "libm.h"
 
-double
-floor(double d)
+#if FLT_EVAL_METHOD==0 || FLT_EVAL_METHOD==1
+#define EPS DBL_EPSILON
+#elif FLT_EVAL_METHOD==2
+#define EPS LDBL_EPSILON
+#endif
+static const double_t toint = 1/EPS;
+
+double __floor(double x)
 {
-	double fract;
+	union {double f; uint64_t i;} u = {x};
+	int e = u.i >> 52 & 0x7ff;
+	double_t y;
 
-	if(d < 0) {
-		fract = modf(-d, &d);
-		if(fract != 0.0)
-			d += 1;
-		d = -d;
-	} else
-		modf(d, &d);
-	return d;
-}
-
-double
-ceil(double d)
-{
-	return -floor(-d);
+	if (e >= 0x3ff+52 || x == 0)
+		return x;
+	/* y = int(x) - x, where int(x) is an integer neighbor of x */
+	if (u.i >> 63)
+		y = x - toint + toint - x;
+	else
+		y = x + toint - toint - x;
+	/* special case because of non-nearest rounding modes */
+	if (e <= 0x3ff-1) {
+		FORCE_EVAL(y);
+		return u.i >> 63 ? -1 : 0;
+	}
+	if (y > 0)
+		return x + y - 1;
+	return x + y;
 }

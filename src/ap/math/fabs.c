@@ -1,19 +1,17 @@
 /*
- * This file is part of the UCB release of Plan 9. It is subject to the license
- * terms in the LICENSE file found in the top-level directory of this
- * distribution and at http://akaros.cs.berkeley.edu/files/Plan9License. No
- * part of the UCB release of Plan 9, including this file, may be copied,
- * modified, propagated, or distributed except according to the terms contained
- * in the LICENSE file.
+ * Copyright (c) 2005-2014 Rich Felker, et al.
+ * Copyright (c) 2015-2020 HarveyOS et al.
+ *
+ * Use of this source code is governed by a MIT-style
+ * license that can be found in the LICENSE.mit file.
  */
 
 #include <math.h>
+#include <stdint.h>
 
-double
-fabs(double arg)
+double __fabs(double x)
 {
-
-	if(arg < 0)
-		return -arg;
-	return arg;
+	union {double f; uint64_t i;} u = {x};
+	u.i &= -1ULL/2;
+	return u.f;
 }

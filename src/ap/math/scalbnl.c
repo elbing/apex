@@ -1,6 +1,6 @@
 /*
  * Copyright (c) 2005-2014 Rich Felker, et al.
- * Copyright (c) 2015-2016 HarveyOS et al.
+ * Copyright (c) 2015-2020 HarveyOS et al.
  *
  * Use of this source code is governed by a MIT-style
  * license that can be found in the LICENSE.mit file.
@@ -28,11 +28,11 @@ long double scalbnl(long double x, int n)
 				n = 16383;
 		}
 	} else if (n < -16382) {
-		x *= 0x1p-16382L;
-		n += 16382;
+		x *= 0x1p-16382L * 0x1p113L;
+		n += 16382 - 113;
 		if (n < -16382) {
-			x *= 0x1p-16382L;
-			n += 16382;
+			x *= 0x1p-16382L * 0x1p113L;
+			n += 16382 - 113;
 			if (n < -16382)
 				n = -16382;
 		}

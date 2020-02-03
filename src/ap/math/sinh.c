@@ -1,80 +1,47 @@
 /*
- * This file is part of the UCB release of Plan 9. It is subject to the license
- * terms in the LICENSE file found in the top-level directory of this
- * distribution and at http://akaros.cs.berkeley.edu/files/Plan9License. No
- * part of the UCB release of Plan 9, including this file, may be copied,
- * modified, propagated, or distributed except according to the terms contained
- * in the LICENSE file.
+ * Copyright (c) 2005-2014 Rich Felker, et al.
+ * Copyright (c) 2015-2020 HarveyOS et al.
+ *
+ * Use of this source code is governed by a MIT-style
+ * license that can be found in the LICENSE.mit file.
  */
 
-/*
-	sinh(arg) returns the hyperbolic sine of its floating-
-	point argument.
+#include "libm.h"
 
-	The exponential function is called for arguments
-	greater in magnitude than 0.5.
-
-	A series is used for arguments smaller in magnitude than 0.5.
-	The coefficients are #2029 from Hart & Cheney. (20.36D)
-
-	cosh(arg) is computed from the exponential function for
-	all arguments.
-*/
-
-#include <math.h>
-#include <errno.h>
-
-static double p0  = -0.6307673640497716991184787251e+6;
-static double p1  = -0.8991272022039509355398013511e+5;
-static double p2  = -0.2894211355989563807284660366e+4;
-static double p3  = -0.2630563213397497062819489e+2;
-static double q0  = -0.6307673640497716991212077277e+6;
-static double q1   = 0.1521517378790019070696485176e+5;
-static double q2  = -0.173678953558233699533450911e+3;
-
-double
-sinh(double arg)
+/* sinh(x) = (exp(x) - 1/exp(x))/2
+ *         = (exp(x)-1 + (exp(x)-1)/exp(x))/2
+ *         = x + x^3/6 + o(x^5)
+ */
+double __sinh(double x)
 {
-	double temp, argsq;
-	int sign;
+	union {double f; uint64_t i;} u = {.f = x};
+	uint32_t w;
+	double t, h, absx;
 
-	sign = 1;
-	if(arg < 0) {
-		arg = - arg;
-		sign = -1;
+	h = 0.5;
+	if (u.i >> 63)
+		h = -h;
+	/* |x| */
+	u.i &= (uint64_t)-1/2;
+	absx = u.f;
+	w = u.i >> 32;
+
+	/* |x| < log(DBL_MAX) */
+	if (w < 0x40862e42) {
+		t = expm1(absx);
+		if (w < 0x3ff00000) {
+			if (w < 0x3ff00000 - (26<<20))
+				/* note: inexact and underflow are raised by expm1 */
+				/* note: this branch avoids spurious underflow */
+				return x;
+			return h*(2*t - t*t/(t+1));
+		}
+		/* note: |x|>log(0x1p26)+eps could be just h*exp(x) */
+		return h*(t + t/(t+1));
 	}
-	if(arg > 21) {
-		if(arg >= HUGE_VAL){
-			errno = ERANGE;
-			temp = HUGE_VAL;
-		} else
-			temp = exp(arg)/2;
-		if(sign > 0)
-			return temp;
-		else
-			return -temp;
-	}
 
-	if(arg > 0.5)
-		return sign*(exp(arg) - exp(-arg))/2;
-
-	argsq = arg*arg;
-	temp = (((p3*argsq+p2)*argsq+p1)*argsq+p0)*arg;
-	temp /= (((argsq+q2)*argsq+q1)*argsq+q0);
-	return sign*temp;
-}
-
-double
-cosh(double arg)
-{
-	if(arg < 0)
-		arg = - arg;
-	if(arg > 21) {
-		if(arg >= HUGE_VAL){
-			errno = ERANGE;
-			return HUGE_VAL;
-		} else
-			return(exp(arg)/2);
-	}
-	return (exp(arg) + exp(-arg))/2;
+	/* |x| > log(DBL_MAX) or nan */
+	/* note: the result is stored to handle overflow */
+	t = 2*h*__expo2(absx);
+	return t;
 }

@@ -136,7 +136,8 @@ double      acosh(double);
 float       acoshf(float);
 long double acoshl(long double);
 
-double      asin(double);
+#define asin __asin
+double      __asin(double);
 float       asinf(float);
 long double asinl(long double);
 
@@ -144,11 +145,13 @@ double      asinh(double);
 float       asinhf(float);
 long double asinhl(long double);
 
-double      atan(double);
+#define atan __atan
+double      __atan(double);
 float       atanf(float);
 long double atanl(long double);
 
-double      atan2(double, double);
+#define atan2 __atan2
+double      __atan2(double, double);
 float       atan2f(float, float);
 long double atan2l(long double, long double);
 
@@ -184,7 +187,8 @@ double      erfc(double);
 float       erfcf(float);
 long double erfcl(long double);
 
-double      exp(double);
+#define exp __exp
+double      __exp(double);
 float       expf(float);
 long double expl(long double);
 
@@ -196,7 +200,8 @@ double      expm1(double);
 float       expm1f(float);
 long double expm1l(long double);
 
-double      fabs(double);
+#define fabs __fabs
+double      __fabs(double);
 float       fabsf(float);
 long double fabsl(long double);
 
@@ -204,7 +209,8 @@ double      fdim(double, double);
 float       fdimf(float, float);
 long double fdiml(long double, long double);
 
-double      floor(double);
+#define floor __floor
+double      __floor(double);
 float       floorf(float);
 long double floorl(long double);
 
@@ -220,15 +226,18 @@ double      fmin(double, double);
 float       fminf(float, float);
 long double fminl(long double, long double);
 
-double      fmod(double, double);
+#define fmod __fmod
+double      __fmod(double, double);
 float       fmodf(float, float);
 long double fmodl(long double, long double);
 
-double      frexp(double, int *);
+#define frexp __frexp
+double      __frexp(double, int *);
 float       frexpf(float, int *);
 long double frexpl(long double, int *);
 
-double      hypot(double, double);
+#define hypot __hypot
+double      __hypot(double, double);
 float       hypotf(float, float);
 long double hypotl(long double, long double);
 
@@ -252,7 +261,8 @@ long long   llround(double);
 long long   llroundf(float);
 long long   llroundl(long double);
 
-double      log(double);
+#define log __log
+double      __log(double);
 float       logf(float);
 long double logl(long double);
 
@@ -280,7 +290,8 @@ long        lround(double);
 long        lroundf(float);
 long        lroundl(long double);
 
-double      modf(double, double *);
+#define modf __modf
+double      __modf(double, double *);
 float       modff(float, float *);
 long double modfl(long double, long double *);
 
@@ -300,7 +311,8 @@ double      nexttoward(double, long double);
 float       nexttowardf(float, long double);
 long double nexttowardl(long double, long double);
 
-double      pow(double, double);
+#define pow __pow
+double      __pow(double, double);
 float       powf(float, float);
 long double powl(long double, long double);
 
@@ -328,11 +340,13 @@ double      scalbn(double, int);
 float       scalbnf(float, int);
 long double scalbnl(long double, int);
 
-double      sin(double);
+#define sin ___sin
+double      ___sin(double);
 float       sinf(float);
 long double sinl(long double);
 
-double      sinh(double);
+#define sinh __sinh
+double      __sinh(double);
 float       sinhf(float);
 long double sinhl(long double);
 
@@ -340,11 +354,13 @@ double      sqrt(double);
 float       sqrtf(float);
 long double sqrtl(long double);
 
-double      tan(double);
+#define tan ___tan
+double      ___tan(double);
 float       tanf(float);
 long double tanl(long double);
 
-double      tanh(double);
+#define tanh __tanh
+double      __tanh(double);
 float       tanhf(float);
 long double tanhl(long double);
 

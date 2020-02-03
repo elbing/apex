@@ -67,10 +67,6 @@ int __setxid(int, int, int, int);
 
 extern char **__environ;
 
-#undef weak_alias
-#define weak_alias(old, new) \
-	extern __typeof(old) new __attribute__((weak, alias(#old)))
-
 #undef LFS64_2
 #define LFS64_2(x, y) weak_alias(x, y)
 

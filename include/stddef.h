@@ -56,11 +56,13 @@ typedef int	wctype_t;
 #endif
 #ifndef _FLOAT_T
 #define _FLOAT_T
-typedef long double float_t;
+typedef float float_t;
 #endif
 #ifndef _DOUBLE_T
 #define _DOUBLE_T
-typedef long double double_t;
+typedef double double_t;
 #endif
+
+#define __LITTLE_ENDIAN 1234
 
 #endif /* __STDDEF_H */

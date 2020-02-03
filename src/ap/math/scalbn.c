@@ -1,6 +1,6 @@
 /*
  * Copyright (c) 2005-2014 Rich Felker, et al.
- * Copyright (c) 2015-2016 HarveyOS et al.
+ * Copyright (c) 2015-2020 HarveyOS et al.
  *
  * Use of this source code is governed by a MIT-style
  * license that can be found in the LICENSE.mit file.
@@ -24,11 +24,13 @@ double scalbn(double x, int n)
 				n = 1023;
 		}
 	} else if (n < -1022) {
-		y *= 0x1p-1022;
-		n += 1022;
+		/* make sure final n < -53 to avoid double
+		   rounding in the subnormal range */
+		y *= 0x1p-1022 * 0x1p53;
+		n += 1022 - 53;
 		if (n < -1022) {
-			y *= 0x1p-1022;
-			n += 1022;
+			y *= 0x1p-1022 * 0x1p53;
+			n += 1022 - 53;
 			if (n < -1022)
 				n = -1022;
 		}

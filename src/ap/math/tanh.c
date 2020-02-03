@@ -1,33 +1,53 @@
 /*
- * This file is part of the UCB release of Plan 9. It is subject to the license
- * terms in the LICENSE file found in the top-level directory of this
- * distribution and at http://akaros.cs.berkeley.edu/files/Plan9License. No
- * part of the UCB release of Plan 9, including this file, may be copied,
- * modified, propagated, or distributed except according to the terms contained
- * in the LICENSE file.
+ * Copyright (c) 2005-2014 Rich Felker, et al.
+ * Copyright (c) 2015-2020 HarveyOS et al.
+ *
+ * Use of this source code is governed by a MIT-style
+ * license that can be found in the LICENSE.mit file.
  */
 
-#include <math.h>
+#include "libm.h"
 
-/*
-	tanh(arg) computes the hyperbolic tangent of its floating
-	point argument.
-
-	sinh and cosh are called except for large arguments, which
-	would cause overflow improperly.
+/* tanh(x) = (exp(x) - exp(-x))/(exp(x) + exp(-x))
+ *         = (exp(2*x) - 1)/(exp(2*x) - 1 + 2)
+ *         = (1 - exp(-2*x))/(exp(-2*x) - 1 + 2)
  */
-
-double
-tanh(double arg)
+double __tanh(double x)
 {
+	union {double f; uint64_t i;} u = {.f = x};
+	uint32_t w;
+	int sign;
+	double_t t;
 
-	if(arg < 0) {
-		arg = -arg;
-		if(arg > 21)
-			return -1;
-		return -sinh(arg)/cosh(arg);
+	/* x = |x| */
+	sign = u.i >> 63;
+	u.i &= (uint64_t)-1/2;
+	x = u.f;
+	w = u.i >> 32;
+
+	if (w > 0x3fe193ea) {
+		/* |x| > log(3)/2 ~= 0.5493 or nan */
+		if (w > 0x40340000) {
+			/* |x| > 20 or nan */
+			/* note: this branch avoids raising overflow */
+			t = 1 - 0/x;
+		} else {
+			t = expm1(2*x);
+			t = 1 - 2/(t+2);
+		}
+	} else if (w > 0x3fd058ae) {
+		/* |x| > log(5/3)/2 ~= 0.2554 */
+		t = expm1(2*x);
+		t = t/(t+2);
+	} else if (w >= 0x00100000) {
+		/* |x| >= 0x1p-1022, up to 2ulp error in [0.1,0.2554] */
+		t = expm1(-2*x);
+		t = -t/(t+2);
+	} else {
+		/* |x| is subnormal */
+		/* note: the branch above would not raise underflow in [0x1p-1023,0x1p-1022) */
+		FORCE_EVAL((float)x);
+		t = x;
 	}
-	if(arg > 21)
-		return 1;
-	return sinh(arg)/cosh(arg);
+	return sign ? -t : t;
 }
