@@ -88,7 +88,7 @@ void casens(void)
 }
 
 
-chget(int c)
+int chget(int c)
 {
 	Tchar i;
 
@@ -153,7 +153,7 @@ void casenh(void)
 }
 
 
-max(int aa, int bb)
+int max(int aa, int bb)
 {
 	if (aa > bb)
 		return(aa);
@@ -344,7 +344,7 @@ void casech(void)
 }
 
 
-findn(int i)
+int findn(int i)
 {
 	int k;
 
@@ -753,7 +753,7 @@ void eatblk(int inblk)
 }
 
 
-cmpstr(Tchar c)
+int cmpstr(Tchar c)
 {
 	int j, delim;
 	Tchar i;
@@ -841,7 +841,7 @@ void caserd(void)
 }
 
 
-rdtty(void)
+int rdtty(void)
 {
 	char	onechar;
 

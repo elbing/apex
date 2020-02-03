@@ -16,7 +16,7 @@
  * n6.c -- width functions, sizes and fonts
 */
 
-n_width(Tchar j)
+int n_width(Tchar j)
 {
 	int i, k;
 
@@ -351,11 +351,11 @@ void n_casevs(void)
 Tchar n_xlss(void)
 {
 	/* stores \x'...' into
-	/* two successive Tchars.
-	/* the first contains HX, the second the value,
-	/* encoded as a vertical motion.
-	/* decoding is done in n2.c by pchar().
-	*/
+	 * two successive Tchars.
+	 * the first contains HX, the second the value,
+	 * encoded as a vertical motion.
+	 * decoding is done in n2.c by pchar().
+	 */
 	int	i;
 
 	getch();

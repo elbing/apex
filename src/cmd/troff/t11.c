@@ -26,7 +26,7 @@ Font	fonts[MAXFONTS+1];	/* font info + ptr to width info */
 
 #define	eq(s1, s2)	(strcmp(s1, s2) == 0)
 
-getdesc(char *name)
+int getdesc(char *name)
 {
 	FILE *fin;
 	char cmd[100], s[100];
@@ -94,7 +94,7 @@ static int checkfont(char *name)
 	
 }
 
-getfont(char *name, int pos)	/* create width tab for font */
+int getfont(char *name, int pos)	/* create width tab for font */
 {
 	FILE *fin;
 	Font *ftemp = &fonts[pos];
@@ -125,7 +125,7 @@ getfont(char *name, int pos)	/* create width tab for font */
 		} else if (strcmp(cmd, "defaultwidth") == 0) {
 			fscanf(fin, "%d", &ftemp->defaultwidth);
 		} else if (strcmp(cmd, "charset") == 0) {
-			wchar_t wc;
+			//wchar_t wc;
 			skipline(fin);
 			nw = ALPHABET;
 			while (fgets(buf, sizeof buf, fin) != NULL) {
@@ -199,7 +199,7 @@ getfont(char *name, int pos)	/* create width tab for font */
 	return 1;
 }
 
-chadd(char *s, int type, int install)	/* add s to global character name table; */
+int chadd(char *s, int type, int install)	/* add s to global character name table; */
 {					/* or just look it up */
 
 	/* a temporary kludge:  store the "type" as the first character */
@@ -208,11 +208,11 @@ chadd(char *s, int type, int install)	/* add s to global character name table; *
 	char *p;
 	int i;
 
-/* fprintf(stderr, "into chadd %s %c %c\n", s, type, install); /* */
+// fprintf(stderr, "into chadd %s %c %c\n", s, type, install); /* */
 	for (i = 0; i < nchnames; i++)
 		if (type == chnames[i][0] && eq(s, chnames[i]+1)) /* +1 since type at front */
 			break;
-/* fprintf(stderr, "i %d, nchnames %d\n", i, nchnames); /* */
+// fprintf(stderr, "i %d, nchnames %d\n", i, nchnames); /* */
 	if (i < nchnames)		/* found same type and bytes at position i */
 		return ALPHABET + i;
 	else if (install == Lookup)	/* not found, and we were just looking */
@@ -229,7 +229,7 @@ chadd(char *s, int type, int install)	/* add s to global character name table; *
 	}
 	strcpy(chnames[nchnames]+1, s);
 	chnames[nchnames][0] = type;
-/* fprintf(stderr, "installed %c%s at %d\n", type, s, nchnames); /* */
+// fprintf(stderr, "installed %c%s at %d\n", type, s, nchnames); /* */
 	return nchnames++ + ALPHABET;
 }
 
@@ -241,7 +241,7 @@ char *chname(int n)	/* return string for char with index n */
 		return "";
 }
 
-getlig(FILE *fin)	/* pick up ligature list */
+int getlig(FILE *fin)	/* pick up ligature list */
 {
 	int lig;
 	char temp[200];

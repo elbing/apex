@@ -443,7 +443,7 @@ void ptfpcmd(int f, char *s, char *longname)
 	} else {
 		OUT "x font %d %s\n", f, s PUT;
 	}
-/*	OUT "f%d\n", xfont PUT;	/* need this for buggy version of adobe transcript */
+//	OUT "f%d\n", xfont PUT;	/* need this for buggy version of adobe transcript */
 				/* which apparently believes that x font means */
 				/* to set the font, not just the position. */
 }

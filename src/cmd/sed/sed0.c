@@ -115,7 +115,7 @@ main(int argc, char **argv)
 
 	dechain();
 
-/*	abort();	/*DEBUG*/
+//	abort();	/*DEBUG*/
 
 	if(eargc <= 0)
 		execute((uint8_t *)NULL);
@@ -157,7 +157,7 @@ fcomp(void)
 		cp = linebuf;
 
 comploop:
-/*	fprintf(stdout, "cp: %s\n", cp);	/*DEBUG*/
+//	fprintf(stdout, "cp: %s\n", cp);	/*DEBUG*/
 		while(*cp == ' ' || *cp == '\t')	cp++;
 		if(*cp == '\0' || *cp == '#')		continue;
 		if(*cp == ';') {
@@ -596,7 +596,7 @@ done:
 uint8_t	*
 compsub(uint8_t *rhsbuf)
 {
-	uint8_t	*p, *q, *r;
+	uint8_t	*p, *q;
 	p = rhsbuf;
 	q = cp;
 	for(;;) {

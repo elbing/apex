@@ -82,7 +82,7 @@ void hyphen(Tchar *wp)
 		}
 }
 
-static alpha(Tchar i)	/* non-zero if really alphabetic */
+static int alpha(Tchar i)	/* non-zero if really alphabetic */
 {
 	if (ismot(i))
 		return 0;
@@ -93,7 +93,7 @@ static alpha(Tchar i)	/* non-zero if really alphabetic */
 }
 
 
-punct(Tchar i)
+int punct(Tchar i)
 {
 	if (!i || alpha(i))
 		return(0);
@@ -228,7 +228,7 @@ int exword(void)
 }
 
 
-suffix(void)
+int suffix(void)
 {
 	Tchar *w;
 	char *s, *s0;
@@ -280,7 +280,7 @@ mark:
 }
 
 
-maplow(int i)
+int maplow(int i)
 {
 	if (isupper(i))
 		i = tolower(i);
@@ -288,7 +288,7 @@ maplow(int i)
 }
 
 
-vowel(int i)
+int vowel(int i)
 {
 	switch (i) {
 	case 'a': case 'A':
@@ -351,7 +351,7 @@ again:
 }
 
 
-dilook(int a, int b, char t[26][13])
+int dilook(int a, int b, char t[26][13])
 {
 	int i, j;
 
@@ -362,9 +362,9 @@ dilook(int a, int b, char t[26][13])
 }
 
 
-/* here beginneth the tex hyphenation code, as interpreted freely */
-/* the main difference is that there is no attempt to squeeze space */
-/* as tightly at tex does. */
+/* here beginneth the tex hyphenation code, as interpreted freely
+ * the main difference is that there is no attempt to squeeze space
+ * as tightly at tex does. */
 
 static int	texit(Tchar *, Tchar *);
 static int	readpats(void);

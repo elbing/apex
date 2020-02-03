@@ -85,7 +85,7 @@ s1:
 }
 
 
-eat(int c)
+int eat(int c)
 {
 	int i;
 

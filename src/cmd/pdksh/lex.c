@@ -890,8 +890,7 @@ pushs(type, areap)
 	s->next = NULL;
 	s->areap = areap;
 	if (type == SFILE || type == SSTDIN) {
-		char *dummy;
-		Xinit(s->xs, dummy, 256, s->areap);
+		Xinit(s->xs, char *dummy, 256, s->areap);
 	} else
 		memset(&s->xs, 0, sizeof(s->xs));
 	return s;

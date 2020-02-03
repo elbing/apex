@@ -14,6 +14,7 @@
 #include	<stdio.h>
 #include "sed.h"
 
+#pragma GCC diagnostic ignored "-Warray-bounds"
 #define Read(f, buf, n)	(fflush(stdout), read(f, buf, n))
 
 void
@@ -21,7 +22,6 @@ execute(uint8_t *file)
 {
 	uint8_t *p1, *p2;
 	union reptr	*ipc;
-	int	c;
 	int32_t	l;
 	uint8_t	*execp;
 
@@ -198,7 +198,7 @@ advance(uint8_t *alp, uint8_t *aep)
 	uint8_t *bbeg;
 	int	ct;
 
-/*fprintf(stderr, "*lp = %c, %o\n*ep = %c, %o\n", *lp, *lp, *ep, *ep);	/*DEBUG*/
+//fprintf(stderr, "*lp = %c, %o\n*ep = %c, %o\n", *lp, *lp, *ep, *ep);	/*DEBUG*/
 
 	lp = alp;
 	ep = aep;

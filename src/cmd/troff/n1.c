@@ -56,7 +56,7 @@ char	*progname;		/* program name (troff or nroff) */
 int	trace = 0;	/* tracing mode: default off */
 int	trace1 = 0;
 
-main(int argc, char *argv[])
+int main(int argc, char *argv[])
 {
 	char *p;
 	int j;
@@ -287,7 +287,7 @@ void init2(void)
 
 void cvtime(void)
 {
-	int32_t tt;
+	time_t tt;
 	struct tm *ltime;
 
 	time(&tt);
@@ -848,7 +848,7 @@ n1:
 }
 
 
-popf(void)
+int popf(void)
 {
 	--ifi;
 	if (ifi < 0) {
@@ -881,7 +881,7 @@ void flushi(void)
  * (internal names), spaces and special cookies (below 040).
  * Leave STX ETX ENQ ACK and BELL in to maintain compatibility with v7 troff.
  */
-getach(void)
+int getach(void)
 {
 	Tchar i;
 	int j;
@@ -921,7 +921,7 @@ void casenx(void)
 }
 
 
-getname(void)
+int getname(void)
 {
 	int j, k;
 

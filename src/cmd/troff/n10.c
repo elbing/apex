@@ -30,7 +30,7 @@ static char *parse(char *s, int typeit)	/* convert \0, etc to nroff driving tabl
 {		/* typeit => add a type id to the front for later use */
 	static char buf[100], *t, *obuf;
 	int quote = 0;
-	wchar_t wc;
+	//wchar_t wc;
 
 	obuf = typeit == Type ? buf : buf+1;
 #ifdef UNICODE
@@ -87,7 +87,7 @@ static int getnrfont(FILE *fp)	/* read the nroff description file */
 	static Chwid chinit;
 	int i, nw, n, wid, code, type;
 	char buf[100], ch[100], s1[100], s2[100];
-	wchar_t wc;
+	//wchar_t wc;
 
 	code = 0;			/* no idea what this should be */
 	chinit.wid = 1;
@@ -192,7 +192,7 @@ void n_ptinit(void)
 	bdtab[3] = 3;
 	bdtab[4] = 3;
 
-	/* hyphalg = 0;	/* for testing */
+	// hyphalg = 0;	/* for testing */
 
 	strcat(termtab, devname);
 	if ((fp = fopen(termtab, "r")) == NULL) {
@@ -388,17 +388,17 @@ void ptout1(void)
 				oput(k);
 			}
 		} else if (k >= t.tfont.nchars) {	/* BUG -- not really understood */
-/* fprintf(stderr, "big char %d, name %s\n", k, chname(k)); /* */
+// fprintf(stderr, "big char %d, name %s\n", k, chname(k)); /* */
 			oputs(chname(k)+1);	/* BUG: should separate Troffchar and MBchar... */
 		} else if (t.tfont.wp[k].str == 0) {
-/* fprintf(stderr, "nostr char %d, name %s\n", k, chname(k)); /* */
+// fprintf(stderr, "nostr char %d, name %s\n", k, chname(k)); /* */
 			oputs(chname(k)+1);	/* BUG: should separate Troffchar and MBchar... */
 		} else if (t.tfont.wp[k].str[0] == MBchar) {	/* parse() puts this on */
-/* fprintf(stderr, "MBstr char %d, name %s\n", k, chname(k)); /* */
+// fprintf(stderr, "MBstr char %d, name %s\n", k, chname(k)); /* */
 			oputs(t.tfont.wp[k].str+1);
 		} else {
 			int oj = j;
-/* fprintf(stderr, "str char %d, name %s\n", k, chname(k)); /* */
+// fprintf(stderr, "str char %d, name %s\n", k, chname(k)); /* */
 			codep = t.tfont.wp[k].str+1;	/* Troffchar by default */
 			while (*codep != 0) {
 				if (*codep & 0200) {

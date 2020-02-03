@@ -457,7 +457,7 @@ nl2:
 }
 
 
-findn1(int a)
+int findn1(int a)
 {
 	int i, j;
 
@@ -489,7 +489,7 @@ void chkpn(void)
 }
 
 
-findt(int a)
+int findt(int a)
 {
 	int i, j, k;
 
@@ -516,7 +516,7 @@ findt(int a)
 }
 
 
-findt1(void)
+int findt1(void)
 {
 	int i;
 
@@ -551,7 +551,7 @@ e1:
 }
 
 
-movword(void)
+int movword(void)
 {
 	int w;
 	Tchar i, *wp;
@@ -660,7 +660,7 @@ void setnel(void)
 }
 
 
-getword(int x)
+int getword(int x)
 {
 	int j, k;
 	Tchar i, *wp;

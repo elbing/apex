@@ -124,7 +124,9 @@ c_ulimit(wp)
 	    };
 	static char	options[3 + NELEM(limits)];
 	rlim_t		UNINITIALIZED(val);
+#ifdef HAVE_SETRLIMIT
 	int		how = SOFT | HARD;
+#endif
 	const struct limits	*l;
 	int		set, all = 0;
 	int		optc, what;
@@ -145,10 +147,14 @@ c_ulimit(wp)
 	while ((optc = ksh_getopt(wp, &builtin_opt, options)) != EOF)
 		switch (optc) {
 		  case 'H':
+		 	#ifdef HAVE_SETRLIMIT
 			how = HARD;
+			#endif
 			break;
 		  case 'S':
+		  	#ifdef HAVE_SETRLIMIT
 			how = SOFT;
+			#endif
 			break;
 		  case 'a':
 			all = 1;

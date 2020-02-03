@@ -23,7 +23,7 @@ int	ccstab[MAXFONTS+1];
 int	bdtab[MAXFONTS+1];
 int	sbold = 0;
 
-t_width(Tchar j)
+int t_width(Tchar j)
 {
 	int i, k;
 
@@ -84,7 +84,7 @@ void zapwcache(int s)
 		widcache[i].fontpts = 0;
 }
 
-onfont(int n, int f)	/* is char n on font f? */
+int onfont(int n, int f)	/* is char n on font f? */
 {
 	int i;
 	Font *fp = &fonts[f];
@@ -117,7 +117,7 @@ onfont(int n, int f)	/* is char n on font f? */
 	return -1;	/* vanilla not found */
 }
 
-getcw(int i)
+int getcw(int i)
 {
 	int k, n, x;
 	Font *fp;
@@ -176,12 +176,12 @@ getcw(int i)
 	}
 	return(k);
 	/* Unitwidth is Units/Point, where
-	/* Units is the fundamental digitization
-	/* of the character set widths, and
-	/* Point is the number of goobies in a point
-	/* e.g., for cat, Units=36, Point=6, so Unitwidth=36/6=6
-	/* In effect, it's the size at which the widths
-	/* translate directly into units.
+	 * Units is the fundamental digitization
+	 * of the character set widths, and
+	 * Point is the number of goobies in a point
+	 * e.g., for cat, Units=36, Point=6, so Unitwidth=36/6=6
+	 * In effect, it's the size at which the widths
+	 * translate directly into units.
 	*/
 }
 
@@ -294,7 +294,7 @@ Tchar t_setabs(void)		/* set absolute char from \N'...' */
  */
 
 
-t_findft(int i)
+int t_findft(int i)
 {
 	int k;
 	Uchar *p;
@@ -373,7 +373,7 @@ void casps1(int i)
 }
 
 
-findps(int i)
+int findps(int i)
 {
 	int j, k;
 
@@ -714,7 +714,7 @@ char *strdupl(const char *s)	/* make a copy of s */
 	return t;
 }
 
-setfp(int pos, int f, char *truename, int print)	/* mount font f at position pos[0...nfonts] */
+int setfp(int pos, int f, char *truename, int print)	/* mount font f at position pos[0...nfonts] */
 {
 	char pathname[NS], shortname[NS];
 
@@ -863,9 +863,9 @@ void casess(void)
 Tchar t_xlss(void)
 {
 	/* stores \x'...' into two successive Tchars.
-	/* the first contains HX, the second the value,
-	/* encoded as a vertical motion.
-	/* decoding is done in n2.c by pchar().
+	 * the first contains HX, the second the value,
+	 * encoded as a vertical motion.
+	 * decoding is done in n2.c by pchar().
 	*/
 	int i;
 
