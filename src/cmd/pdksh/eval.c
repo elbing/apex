@@ -729,7 +729,7 @@ varsub(xp, sp, word, stypep, slenp)
 				zero_ok = 1;
 			for (; vp; vp = vp->u.array)
 				if (vp->flag & ISSET) {
-					vp->index = vp->index + 1;
+					int max = vp->index + 1;
 					n++;
 				}
 			c = n; /* ksh88/ksh93 go for number, not max index */
