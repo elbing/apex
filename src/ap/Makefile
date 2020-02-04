@@ -1,6 +1,6 @@
 
 TARGET = libap.a
-DIRS = $(ARCH) bsd crt gen locale math multibyte plan9 posix stdio stdlib string
+DIRS = $(ARCH) bsd crt dirent fenv gen locale math multibyte plan9 posix regex stdio stdlib string
 
 .PHONY: all
 
@@ -11,6 +11,7 @@ $(TARGET):
 	cd bsd; $(MAKE) $(MFLAGS)
 	cd crt; $(MAKE) $(MFLAGS)
 	cd dirent; $(MAKE) $(MFLAGS)
+	cd fenv; $(MAKE) $(MFLAGS)
 	cd gen; $(MAKE) $(MFLAGS)
 	cd locale; $(MAKE) $(MFLAGS)
 	cd math; $(MAKE) $(MFLAGS)
