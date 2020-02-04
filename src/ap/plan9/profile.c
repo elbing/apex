@@ -7,15 +7,15 @@
  * in the LICENSE file.
  */
 
-#include    <stdio.h>
-#include    <unistd.h>
-#include	<stdlib.h>
-#include	<string.h>
-#include    <fcntl.h>
-#include    <stdarg.h>
-#include	<errno.h>
-#include	"sys9.h"
-#include    "lib.h"
+#include <stdio.h>
+#include <unistd.h>
+#include <stdlib.h>
+#include <string.h>
+#include <fcntl.h>
+#include <stdarg.h>
+#include <errno.h>
+#include "sys9.h"
+#include "lib.h"
 
 enum {
 	Profoff,			/* No profiling */
