@@ -1,3 +1,4 @@
+#define _OLD_APE
 #include <signal.h>
 #include <setjmp.h>
 #include "sys9.h"
@@ -50,10 +51,24 @@ notecont(Ureg *u, char *s)
 #define JMPBUFPC 1
 #define JMPBUFSP 0
 
-extern sigset_t	_psigblocked;
+extern sigset_t _psigblocked;
 
 void
 siglongjmp(sigjmp_buf j, int ret)
 {
-    longjmp(j, ret);
+    struct Ureg *u;
+
+    if(j[0])
+        _psigblocked = j[1];
+    if(nstack == 0 || pcstack[nstack-1].u->sp > j[2+JMPBUFSP])
+        longjmp(j+2, ret);
+    u = pcstack[nstack-1].u;
+    nstack--;
+    u->ax = ret;
+    if(ret == 0)
+        u->ax = 1;
+    u->ip = j[2+JMPBUFPC];
+    u->sp = j[2+JMPBUFSP] + 8;
+    noted(NRSTR);
 }
+

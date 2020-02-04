@@ -11,6 +11,7 @@
 #include "ksh_time.h"
 #include "ksh_limval.h"
 #include "ksh_stat.h"
+#undef _OLD_APE // not signals here and we use now regex in libap
 #include <ctype.h>
 
 /*

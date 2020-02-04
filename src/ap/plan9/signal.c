@@ -7,12 +7,15 @@
  * in the LICENSE file.
  */
 
+#define _OLD_APE
 #include <string.h>
 #include <signal.h>
 #include <setjmp.h>
 #include <errno.h>
 #include "sys9.h"
 #include "lib.h"
+
+extern sigset_t       _psigblocked;
 
 static struct {
 	char	*msg;	/* just check prefix */

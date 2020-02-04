@@ -7,6 +7,7 @@
  * in the LICENSE file.
  */
 
+#define _OLD_APE
 #include <unistd.h>
 #include <signal.h>
 #include <errno.h>
@@ -24,14 +25,14 @@ static size_t stdsigs= SIGHUP|SIGINT|SIGQUIT|SIGILL|SIGABRT|SIGFPE|SIGKILL|
 int
 sigemptyset(sigset_t *set)
 {
-	set = NULL;
+	*set = 0;
 	return 0;
 }
 
 int
 sigfillset(sigset_t *set)
 {
-	set->__bits[0] = stdsigs;
+	*set = stdsigs;
 	return 0;
 }
 
@@ -45,7 +46,7 @@ sigaddset(sigset_t *set, int signo)
 		errno = EINVAL;
 		return -1;
 	}
-	set->__bits[0] |= b;
+	*set |= b;
 	return 0;
 }
 
@@ -59,7 +60,7 @@ sigdelset(sigset_t *set, int signo)
 		errno = EINVAL;
 		return -1;
 	}
-	set->__bits[0] &= ~b;
+	*set &= ~b;
 	return 0;
 }
 
@@ -73,5 +74,5 @@ sigismember(const sigset_t *set, int signo)
 		errno = EINVAL;
 		return -1;
 	}
-	return (b&set->__bits[0])? 1 : 0;
+	return (b&*set)? 1 : 0;
 }

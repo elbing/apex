@@ -13,6 +13,7 @@
 extern "C" {
 #endif
 
+#ifndef _OLD_APE
 #include <features.h>
 
 #include <bits/setjmp.h>
@@ -22,6 +23,15 @@ typedef struct __jmp_buf_tag {
 	unsigned long __fl;
 	unsigned long __ss[128/sizeof(long)];
 } jmp_buf[1];
+
+#endif // _OLD_APE
+
+#ifdef _OLD_APE
+#define __NEED_uintptr_t
+#include <bits/alltypes.h>
+typedef uintptr_t jmp_buf[10];
+typedef uintptr_t sigjmp_buf[10];
+#endif
 
 #if defined(_POSIX_SOURCE) || defined(_POSIX_C_SOURCE) \
  || defined(_XOPEN_SOURCE) || defined(_GNU_SOURCE) \
@@ -41,9 +51,5 @@ int setjmp (jmp_buf);
 _Noreturn void longjmp (jmp_buf, int);
 
 #define setjmp setjmp
-
-#ifdef __cplusplus
-}
-#endif
 
 #endif

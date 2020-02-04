@@ -7,6 +7,7 @@
  * in the LICENSE file.
  */
 
+#define _OLD_APE
 #include <unistd.h>
 #include <signal.h>
 
@@ -16,6 +17,6 @@
 int
 sigpending(sigset_t *set)
 {
-	set = NULL;
+	*set = 0;
 	return 0;
 }

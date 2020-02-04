@@ -140,7 +140,7 @@
 /*#undef clock_t long */
 
 /* Define to the type of struct rlimit fields if the rlim_t type is missing */
-#define rlim_t long
+//#define rlim_t long
 
 /* Define if time() is declared in <time.h> */
 #define TIME_DECLARED
@@ -368,5 +368,8 @@
  * out the undefs....
  */
 #include "conf-end.h"
+
+/* Signals in APEX must be reworked */
+#define _OLD_APE
 
 #endif /* CONFIG_H */

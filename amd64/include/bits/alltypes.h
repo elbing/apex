@@ -354,7 +354,11 @@ typedef struct __locale_struct * locale_t;
 
 
 #if defined(__NEED_sigset_t) && !defined(__DEFINED_sigset_t)
+# ifdef _OLD_APE
+typedef unsigned long long sigset_t;
+# else
 typedef struct __sigset_t { unsigned long __bits[128/sizeof(long)]; } sigset_t;
+# endif
 #define __DEFINED_sigset_t
 #endif
 

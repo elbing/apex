@@ -7,6 +7,7 @@
  * in the LICENSE file.
  */
 
+#define _OLD_APE
 #include <unistd.h>
 #include <stdlib.h>
 #include <string.h>
