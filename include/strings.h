@@ -9,10 +9,6 @@
 #ifndef	_STRINGS_H
 #define	_STRINGS_H
 
-#ifndef __STDDEF_H
-#include <stddef.h>
-#endif
-
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -20,6 +16,8 @@ extern "C" {
 
 #define __NEED_size_t
 #define __NEED_locale_t
+
+#include <bits/alltypes.h>
 
 #if defined(_GNU_SOURCE) || defined(_BSD_SOURCE) || defined(_POSIX_SOURCE) \
  || (defined(_POSIX_C_SOURCE) && _POSIX_C_SOURCE+0 < 200809L) \

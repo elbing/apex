@@ -10,6 +10,8 @@
 #ifndef __UTIME_H
 #define __UTIME_H
 
+#include <features.h>
+#include <bits/alltypes.h>
 
 struct utimbuf
 {

@@ -7,6 +7,8 @@
  * in the LICENSE file.
  */
 
+#undef _BSD_SOURCE
+#define _OLD_APE
 #include <ctype.h>
 
 unsigned char	_ctype[] =

@@ -7,22 +7,37 @@
  * in the LICENSE file.
  */
 
-#ifndef __STDLIB_H
-#define __STDLIB_H
-
-#include <stddef.h>
+#ifndef _STDLIB_H
+#define _STDLIB_H
 
 #define EXIT_FAILURE 1
 #define EXIT_SUCCESS 0
 #define MB_CUR_MAX 8
 #define RAND_MAX (0x7fffffff)
 
-typedef struct { int quot, rem; } div_t;
-typedef struct { long quot, rem; } ldiv_t;
-
 #ifdef __cplusplus
 extern "C" {
 #endif
+
+#include <features.h>
+
+#ifdef __cplusplus
+#ifndef NULL
+#define NULL 0L
+#endif
+#else
+#ifndef NULL
+#define NULL ((void*)0)
+#endif
+#endif
+
+#define __NEED_size_t
+#define __NEED_wchar_t
+
+#include <bits/alltypes.h>
+
+typedef struct { int quot, rem; } div_t;
+typedef struct { long quot, rem; } ldiv_t;
 
 extern double atof(const char *);
 extern int atoi(const char *);

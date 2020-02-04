@@ -9,12 +9,25 @@
 
 #ifndef	__DIRENT_H
 #define	__DIRENT_H
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+#include <features.h>
+
+#define __NEED_ino_t
+#define __NEED_off_t
+#if defined(_BSD_SOURCE) || defined(_GNU_SOURCE)
+#define __NEED_size_t
+#endif
+
+#include <bits/alltypes.h>
+
 /*
  * this must be a power of 2 and a multiple of all the ones in the system
  */
 #define MAXNAMLEN 255
-
-#include <sys/types.h>
 
 typedef size_t d_ino;
 
@@ -36,11 +49,6 @@ typedef struct _dirdesc {
 	int	dirloc;
 	volatile int lock[2];
 } DIR;
-
-
-#ifdef __cplusplus
-extern "C" {
-#endif
 
 /*
  * functions defined on directories

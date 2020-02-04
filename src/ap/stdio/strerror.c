@@ -104,10 +104,10 @@ strerror(int n)
 		return "Unknown error";
 }
 
-char *
-strerror_r(int n, char *buf, int len)
+int  
+strerror_r(int n, char *buf, size_t len)
 {
 	strncpy(buf, strerror(n), len);
 	buf[len-1] = 0;
-	return buf;
+	return 0;
 }

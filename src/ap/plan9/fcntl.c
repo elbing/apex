@@ -7,11 +7,12 @@
  * in the LICENSE file.
  */
 
-#include "lib.h"
 #include <unistd.h>
+#include <fcntl.h>
 #include <errno.h>
 #include <stdarg.h>
 #include "sys9.h"
+#include "lib.h"
 
 /*
  * BUG: advisory locking not implemented

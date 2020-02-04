@@ -14,9 +14,19 @@
 extern "C" {
 #endif
 
-#ifndef __TYPES_H
-#include <sys/types.h>
-#endif
+#include <features.h>
+#define __NEED_dev_t
+#define __NEED_ino_t
+#define __NEED_mode_t
+#define __NEED_nlink_t
+#define __NEED_uid_t
+#define __NEED_gid_t
+#define __NEED_off_t
+#define __NEED_time_t
+#define __NEED_blksize_t
+#define __NEED_blkcnt_t
+#define __NEED_struct_timespec
+#include <bits/alltypes.h>
 
 /*
  * stat structure, used by stat(2) and fstat(2)
@@ -80,12 +90,7 @@ extern int __fstat(int, struct stat *);
 #define fstat(i, s) __fstat(i, s)
 
 extern int chmod(const char *, mode_t);
-
-#ifdef _BSD_EXTENSION
 extern int	lstat(const char *, struct stat *);
-extern int	symlink(const char *, const char *);
-extern ssize_t	readlink(const char *, char*, size_t);
-#endif
 
 #ifdef __cplusplus
 }

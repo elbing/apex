@@ -8,7 +8,6 @@
  */
 
 /* posix */
-#include <sys/types.h>
 #include <unistd.h>
 #include <stdlib.h>
 #include <stdio.h>
@@ -17,15 +16,13 @@
 #include <string.h>
 
 /* bsd extensions */
-#include <sys/uio.h>
-#include <sys/socket.h>
 #include <arpa/inet.h>
 #include <sys/un.h>
 
 #include "priv.h"
 
 void
-_sock_ingetaddr(Rock *r, struct sockaddr_in *ip, int *alen, char *a)
+_sock_ingetaddr(Rock *r, struct sockaddr_in *ip, socklen_t *alen, char *a)
 {
 	int n, fd;
 	char *p;

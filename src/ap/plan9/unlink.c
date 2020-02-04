@@ -7,13 +7,13 @@
  * in the LICENSE file.
  */
 
-#include "lib.h"
 #include <unistd.h>
-#include <errno.h>
 #include <stdio.h>
-#include <string.h>
 #include <stdlib.h>
+#include <string.h>
+#include <errno.h>
 #include "sys9.h"
+#include "lib.h"
 #include "dir.h"
 
 

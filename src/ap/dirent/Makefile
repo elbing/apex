@@ -3,7 +3,7 @@ include $(APEX)/src/$(OS).inc
 TARGET = libap.a
 SRCS = $(wildcard *.c)
 OBJ = ${SRCS:.c=.o}
-CFLAGS += -I../internal -D_RESEARCH_SOURCE
+CFLAGS += -I../internal -D_RESEARCH_SOURCE -D_BSD_SOURCE
 
 .PHONY: all clean
 

@@ -19,8 +19,8 @@
 
 #include "priv.h"
 
-int
-send(int fd, void *a, int n, int flags)
+ssize_t
+send(int fd, const void *a, size_t n, int flags)
 {
 	if(flags & MSG_OOB){
 		errno = EOPNOTSUPP;
@@ -29,8 +29,8 @@ send(int fd, void *a, int n, int flags)
 	return write(fd, a, n);
 }
 
-int
-recv(int fd, void *a, int n, int flags)
+ssize_t
+recv(int fd, void *a, size_t n, int flags)
 {
 	if(flags & MSG_OOB){
 		errno = EOPNOTSUPP;

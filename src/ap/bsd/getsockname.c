@@ -18,15 +18,13 @@
 #include <sys/stat.h>
 
 /* bsd extensions */
-#include <sys/uio.h>
-#include <sys/socket.h>
 #include <netinet/in.h>
 #include <sys/un.h>
 
 #include "priv.h"
 
 int
-getsockname(int fd, void *addr, int *alen)
+getsockname(int fd, struct sockaddr *addr, socklen_t *alen)
 {
 	Rock *r;
 	int i;

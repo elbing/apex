@@ -4,6 +4,12 @@
     This header file is an extension to ANSI/POSIX
 #endif
 
+#define __NEED_uint64_t
+#define __NEED_uint32_t
+#define __NEED_uintptr_t
+
+#include <bits/alltypes.h>
+
 struct Ureg {
 	uint64_t	ax;
 	uint64_t	bx;

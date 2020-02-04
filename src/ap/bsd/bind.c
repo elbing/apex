@@ -8,7 +8,6 @@
  */
 
 /* posix */
-#include <sys/types.h>
 #include <unistd.h>
 #include <stdlib.h>
 #include <stdio.h>
@@ -19,8 +18,6 @@
 #include <signal.h>
 
 /* socket extensions */
-#include <sys/uio.h>
-#include <sys/socket.h>
 #include <netinet/in.h>
 #include <sys/un.h>
 
@@ -30,9 +27,10 @@
 #include "priv.h"
 
 int
-bind(int fd, void *a, int alen)
+bind(int fd, const struct sockaddr *a, socklen_t alen)
 {
-	int n, len, cfd;
+	int n, cfd;
+	socklen_t len;
 	Rock *r;
 	char msg[128];
 	struct sockaddr_in *lip;

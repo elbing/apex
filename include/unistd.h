@@ -21,14 +21,6 @@
 #define _POSIX_SYNC_IO -1
 #define _POSIX_VDISABLE -1
 
-#ifndef _SIZE_T
-#define _SIZE_T
-typedef unsigned long size_t;
-#endif
-#ifndef _SSIZE_T
-#define _SSIZE_T
-typedef long ssize_t;
-#endif
 #ifndef NULL
 #ifdef __cplusplus
 #define NULL 0L
@@ -80,14 +72,27 @@ typedef long ssize_t;
 #define _PC_NO_TRUNC		8
 #define _PC_VDISABLE		9
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+#include <features.h>
+
 /* standard filenos */
 #define STDIN_FILENO		0
 #define STDOUT_FILENO		1
 #define STDERR_FILENO		2
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+#define __NEED_size_t
+#define __NEED_ssize_t
+#define __NEED_uid_t
+#define __NEED_gid_t
+#define __NEED_off_t
+#define __NEED_pid_t
+#define __NEED_intptr_t
+#define __NEED_useconds_t
+
+#include <bits/alltypes.h>
 
 /* process primitives */
 extern int _execl(const char *, const char * , ...);
@@ -103,10 +108,8 @@ extern unsigned int __alarm(unsigned int);
 extern int pause(void);
 extern unsigned int __sleep(unsigned int);
 #define sleep(u) __sleep(u)
-#ifdef __TYPES_H
 extern pid_t _fork(void);
 #define fork _fork
-#endif
 
 /* process environment */
 extern char *getlogin(void);
@@ -114,7 +117,6 @@ extern char *cuserid(char *);
 extern char *ttyname(int);
 extern int isatty(int);
 extern long sysconf(int);
-#ifdef __TYPES_H
 extern pid_t getpid(void);
 extern pid_t getppid(void);
 extern uid_t getuid(void);
@@ -127,7 +129,6 @@ extern int getgroups(int, gid_t *);
 extern pid_t getpgrp(void);
 extern int setpgid(pid_t, pid_t);
 extern pid_t setsid(void);
-#endif
 
 /* files and directories */
 extern int __chdir(const char *);
@@ -139,9 +140,9 @@ extern int rmdir(const char *);
 extern int access(const char *, int);
 extern long pathconf(const char *, int);
 extern long fpathconf(int, int);
-#ifdef __TYPES_H
 extern int chown(const char *, uid_t, gid_t);
-#endif
+extern int  symlink(const char *, const char *);
+extern ssize_t  readlink(const char *, char*, size_t);
 
 /* input and output primitives */
 extern int __pipe(int *);
@@ -155,16 +156,12 @@ extern ssize_t __read(int, void *, size_t);
 #define read __read
 extern ssize_t __write(int, const void *, size_t);
 #define write __write
-#ifdef __TYPES_H
 extern int ftruncate(int, off_t);
 extern off_t lseek(int, off_t, int);
-#endif
 
 /* device- and class-specific functions */
-#ifdef __TYPES_H
 extern pid_t tcgetpgrp(int);
 extern int tcsetpgrp(int, pid_t);
-#endif
 
 #ifdef _REENTRANT_SOURCE
 extern char *getlogin_r(char *, int);

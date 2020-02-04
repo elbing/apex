@@ -7,10 +7,10 @@
  * in the LICENSE file.
  */
 
-#include "lib.h"
-#include <errno.h>
 #include <stdlib.h>
+#include <errno.h>
 #include "sys9.h"
+#include "lib.h"
 #include "dir.h"
 
 static int

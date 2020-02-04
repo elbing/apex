@@ -14,7 +14,7 @@
 extern "C" { 
 #endif
 
-typedef unsigned int Rune;	/* 32 bits */
+typedef uint32_t Rune;	/* 32 bits */
 
 enum
 {

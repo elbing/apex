@@ -173,12 +173,12 @@ issocket(int fd)
 /*
  * probably should do better than this
  */
-int getsockopt(int i, int n, int m, void *v, int *p)
+int getsockopt(int i, int n, int m, void *v, socklen_t *p)
 {
 	return -1;
 }
 
-int setsockopt(int i, int n, int m, void *v, int p)
+int setsockopt(int i, int n, int m, const void *v, socklen_t p)
 {
 	return 0;
 }

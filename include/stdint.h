@@ -9,18 +9,25 @@
 #ifndef _STDINT_H
 #define _STDINT_H
 
-#include <inttypes.h>
+#define __NEED_int8_t
+#define __NEED_int16_t
+#define __NEED_int32_t
+#define __NEED_int64_t
+
+#define __NEED_uint8_t
+#define __NEED_uint16_t
+#define __NEED_uint32_t
+#define __NEED_uint64_t
+
+#define __NEED_intptr_t
+#define __NEED_uintptr_t
+
+#define __NEED_intmax_t
+#define __NEED_uintmax_t
+
+#include <bits/alltypes.h>
 
 #define nil		((void*)0)
-typedef	unsigned char	uint8_t;
-typedef signed char	int8_t;
-typedef	unsigned short	uint16_t;
-typedef	signed short	int16_t;
-typedef unsigned int	uint32_t;
-typedef signed int	int32_t;
-typedef	unsigned long long uint64_t;
-typedef	long long	int64_t;
-typedef uint32_t	usize;
 
 typedef int8_t int_fast8_t;
 typedef int64_t int_fast64_t;

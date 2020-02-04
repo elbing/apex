@@ -9,11 +9,20 @@
 
 #ifndef __FCNTL_H
 #define __FCNTL_H
-#ifndef _POSIX_SOURCE
-   This header file is not defined in pure ANSI
+
+#include <features.h>
+
+#define __NEED_off_t
+#define __NEED_pid_t
+#define __NEED_mode_t
+
+#ifdef _GNU_SOURCE
+#define __NEED_size_t
+#define __NEED_ssize_t
+#define __NEED_struct_iovec
 #endif
 
-#include	<sys/types.h>
+#include <bits/alltypes.h>
 
 #define O_PATH    010000000
 #define O_SEARCH  O_PATH

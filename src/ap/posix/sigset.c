@@ -7,6 +7,7 @@
  * in the LICENSE file.
  */
 
+#include <unistd.h>
 #include <signal.h>
 #include <errno.h>
 
@@ -15,7 +16,7 @@
  * the signal #define'd as i in signal.h is inluded.
  */
 
-static sigset_t stdsigs = SIGHUP|SIGINT|SIGQUIT|SIGILL|SIGABRT|SIGFPE|SIGKILL|
+static size_t stdsigs= SIGHUP|SIGINT|SIGQUIT|SIGILL|SIGABRT|SIGFPE|SIGKILL|
 		SIGSEGV|SIGPIPE|SIGALRM|SIGTERM|SIGUSR1|SIGUSR2;
 
 #define BITSIG(s) (2<<(s))
@@ -23,14 +24,14 @@ static sigset_t stdsigs = SIGHUP|SIGINT|SIGQUIT|SIGILL|SIGABRT|SIGFPE|SIGKILL|
 int
 sigemptyset(sigset_t *set)
 {
-	*set = 0;
+	set = NULL;
 	return 0;
 }
 
 int
 sigfillset(sigset_t *set)
 {
-	*set = stdsigs;
+	set->__bits[0] = stdsigs;
 	return 0;
 }
 
@@ -44,7 +45,7 @@ sigaddset(sigset_t *set, int signo)
 		errno = EINVAL;
 		return -1;
 	}
-	*set |= b;
+	set->__bits[0] |= b;
 	return 0;
 }
 
@@ -58,7 +59,7 @@ sigdelset(sigset_t *set, int signo)
 		errno = EINVAL;
 		return -1;
 	}
-	*set &= ~b;
+	set->__bits[0] &= ~b;
 	return 0;
 }
 
@@ -72,5 +73,5 @@ sigismember(const sigset_t *set, int signo)
 		errno = EINVAL;
 		return -1;
 	}
-	return (b&*set)? 1 : 0;
+	return (b&set->__bits[0])? 1 : 0;
 }

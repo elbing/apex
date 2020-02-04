@@ -7,12 +7,8 @@
  * in the LICENSE file.
  */
 
-#include <stdint.h>
-#include <sys/types.h>
 #include <sys/limits.h>
-#include <fcntl.h>
 #include <ureg.h>
-#include <signal.h>
 
 typedef struct Ureg Ureg;
 
@@ -70,7 +66,7 @@ extern int	_sessleader;
 extern void	(*_sighdlr[])(int, char*, Ureg*);
 extern char	*_sigstring(int);
 extern int	_stringsig(char *);
-extern sigset_t	_psigblocked;
+extern sigset_t	_psigblocked; // Now sigset_t is an struct so we have to keep old Plan 9 ANSI adapter
 extern int	_startbuf(int);
 extern int	_selbuf(int);
 extern void	_closebuf(int);

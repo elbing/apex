@@ -6,6 +6,7 @@
  * license that can be found in the LICENSE.mit file.
  */
 
+#include <stdlib.h>
 #include "libc.h"
 #include "sys9.h"
 

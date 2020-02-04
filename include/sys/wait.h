@@ -7,8 +7,8 @@
  * in the LICENSE file.
  */
 
-#ifndef __WAIT_H
-#define __WAIT_H
+#ifndef _WAIT_H
+#define _WAIT_H
 
 /* flag bits for third argument of waitpid */
 #define WNOHANG		0x1

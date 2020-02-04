@@ -8,25 +8,21 @@
  */
 
 /* posix */
-#include <sys/types.h>
 #include <unistd.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include <fcntl.h>
 #include <string.h>
 #include <errno.h>
-#include <sys/stat.h>
 
 /* bsd extensions */
-#include <sys/uio.h>
-#include <sys/socket.h>
 #include <netinet/in.h>
 #include <sys/un.h>
 
 #include "priv.h"
 
 int
-getpeername(int fd, void *addr, int *alen)
+getpeername(int fd, struct sockaddr *addr, socklen_t *alen)
 {
 	Rock *r;
 	int i;

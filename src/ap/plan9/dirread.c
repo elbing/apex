@@ -7,11 +7,10 @@
  * in the LICENSE file.
  */
 
-#include "lib.h"
-#include <string.h>
-#include <stdlib.h>
 #include <unistd.h>
+#include <stdlib.h>
 #include "sys9.h"
+#include "lib.h"
 #include "dir.h"
 
 static int

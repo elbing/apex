@@ -10,13 +10,11 @@
 #ifndef __IOCTL_H__
 #define __IOCTL_H__
 
-#ifndef _BSD_EXTENSION
-    This header file is an extension to ANSI/POSIX
-#endif
-
 #ifdef __cplusplus
 extern "C" {
 #endif
+
+#include <bits/alltypes.h>
 
 /* FIONREAD: return number of bytes readable in *(long*)arg */
 #define FIONREAD 1

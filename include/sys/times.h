@@ -1,30 +1,33 @@
 /*
- * This file is part of the UCB release of Plan 9. It is subject to the license
- * terms in the LICENSE file found in the top-level directory of this
- * distribution and at http://akaros.cs.berkeley.edu/files/Plan9License. No
- * part of the UCB release of Plan 9, including this file, may be copied,
- * modified, propagated, or distributed except according to the terms contained
- * in the LICENSE file.
+ * Copyright (c) 2005-2014 Rich Felker, et al.
+ * Copyright (c) 2015-2020 HarveyOS et al.
+ *
+ * Use of this source code is governed by a MIT-style
+ * license that can be found in the LICENSE.mit file.
  */
 
-#ifndef __TIMES_H
-#define __TIMES_H
-
-struct tms {
-	clock_t	tms_utime;
-	clock_t	tms_stime;
-	clock_t	tms_cutime;
-	clock_t	tms_cstime;
-};
+#ifndef	_SYS_TIMES_H
+#define	_SYS_TIMES_H
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-clock_t times(struct tms *);
+#define __NEED_clock_t
+#include <bits/alltypes.h>
+
+struct tms {
+	clock_t tms_utime;
+	clock_t tms_stime;
+	clock_t tms_cutime;
+	clock_t tms_cstime;
+};
+
+clock_t times (struct tms *);
 
 #ifdef __cplusplus
 }
 #endif
 
 #endif
+

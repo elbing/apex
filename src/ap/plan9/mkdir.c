@@ -7,11 +7,12 @@
  * in the LICENSE file.
  */
 
-#include "lib.h"
+#include <unistd.h>
+#include <fcntl.h>
 #include <sys/stat.h>
 #include <errno.h>
-#include <unistd.h>
 #include "sys9.h"
+#include "lib.h"
 
 /*
  * BUG: errno mapping

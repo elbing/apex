@@ -1,36 +1,58 @@
 /*
- * This file is part of the UCB release of Plan 9. It is subject to the license
- * terms in the LICENSE file found in the top-level directory of this
- * distribution and at http://akaros.cs.berkeley.edu/files/Plan9License. No
- * part of the UCB release of Plan 9, including this file, may be copied,
- * modified, propagated, or distributed except according to the terms contained
- * in the LICENSE file.
+ * Copyright (c) 2005-2014 Rich Felker, et al.
+ * Copyright (c) 2015-2020 HarveyOS et al.
+ *
+ * Use of this source code is governed by a MIT-style
+ * license that can be found in the LICENSE.mit file.
  */
 
-#ifndef __GRP
-#define __GRP
-#ifndef _POSIX_SOURCE
-   This header file is not defined in pure ANSI
-#endif
-#include <sys/types.h>
+#ifndef	_GRP_H
+#define	_GRP_H
 
-struct group
-{
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+#include <features.h>
+
+#define __NEED_size_t
+#define __NEED_gid_t
+
+#ifdef _GNU_SOURCE
+#define __NEED_FILE
+#endif
+
+#include <bits/alltypes.h>
+
+struct group {
 	char *gr_name;
 	char *gr_passwd;
 	gid_t gr_gid;
 	char **gr_mem;
 };
 
-#ifdef __cplusplus
-extern "C" {
+struct group  *getgrgid(gid_t);
+struct group  *getgrnam(const char *);
+
+int getgrgid_r(gid_t, struct group *, char *, size_t, struct group **);
+int getgrnam_r(const char *, struct group *, char *, size_t, struct group **);
+
+#if defined(_XOPEN_SOURCE) || defined(_GNU_SOURCE) || defined(_BSD_SOURCE)
+struct group  *getgrent(void);
+void           endgrent(void);
+void           setgrent(void);
 #endif
 
-extern struct group *getgrgid(gid_t);
-extern struct group *getgrnam(const char *);
-extern struct group  *getgrent(void);
-extern void endgrent(void);
-extern void setgrent(void);
+#ifdef _GNU_SOURCE
+struct group  *fgetgrent(FILE *);
+int putgrent(const struct group *, FILE *);
+#endif
+
+#if defined(_GNU_SOURCE) || defined(_BSD_SOURCE)
+int getgrouplist(const char *, gid_t, gid_t *, int *);
+int setgroups(size_t, const gid_t *);
+int initgroups(const char *, gid_t);
+#endif
 
 #ifdef __cplusplus
 }

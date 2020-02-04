@@ -8,25 +8,20 @@
  */
 
 /* posix */
-#include <sys/types.h>
-#include <unistd.h>
-#include <stdlib.h>
 #include <stdio.h>
+#include <unistd.h>
 #include <fcntl.h>
 #include <string.h>
 #include <errno.h>
 
 /* bsd extensions */
-#include <sys/uio.h>
-#include <sys/socket.h>
 #include <arpa/inet.h>
 #include <sys/un.h>
-#include <sys/stat.h>
 
 #include "priv.h"
 
 int
-connect(int fd, void *a, int alen)
+connect(int fd, const struct sockaddr *a, socklen_t alen)
 {
 	Rock *r;
 	int n, cfd, nfd;

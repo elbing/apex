@@ -8,14 +8,10 @@
  */
 
 /* posix */
-#include <sys/types.h>
-#include <unistd.h>
-#include <stdlib.h>
 #include <string.h>
+#include <stdlib.h>
 
 /* bsd extensions */
-#include <sys/uio.h>
-#include <sys/socket.h>
 #include <arpa/inet.h>
 
 #define CLASS(x)	(x[0]>>6)

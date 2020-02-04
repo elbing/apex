@@ -1,29 +1,33 @@
 /*
- * This file is part of the UCB release of Plan 9. It is subject to the license
- * terms in the LICENSE file found in the top-level directory of this
- * distribution and at http://akaros.cs.berkeley.edu/files/Plan9License. No
- * part of the UCB release of Plan 9, including this file, may be copied,
- * modified, propagated, or distributed except according to the terms contained
- * in the LICENSE file.
+ * Copyright (c) 2005-2014 Rich Felker, et al.
+ * Copyright (c) 2015-2020 HarveyOS et al.
+ *
+ * Use of this source code is governed by a MIT-style
+ * license that can be found in the LICENSE.mit file.
  */
 
-#ifndef __SELECT_H
-#define __SELECT_H
-#ifndef _BSD_EXTENSION
-    This header file is an extension to ANSI/POSIX
-#endif
+#ifndef _SYS_SELECT_H
+#define _SYS_SELECT_H
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-#include <sys/types.h>
+#include <features.h>
+
+#define __NEED_size_t
+#define __NEED_time_t
+#define __NEED_suseconds_t
+#define __NEED_struct_timeval
+#define __NEED_struct_timespec
+#define __NEED_sigset_t
+
+#include <bits/alltypes.h>
 
 #define FD_SETSIZE 1024
 
 typedef unsigned long fd_mask;
 
-typedef struct
-{
+typedef struct {
 	unsigned long fds_bits[FD_SETSIZE / 8 / sizeof(long)];
 } fd_set;
 
@@ -33,13 +37,18 @@ typedef struct
 #define FD_ISSET(d, s) !!((s)->fds_bits[(d)/(8*sizeof(long))] & (1UL<<((d)%(8*sizeof(long)))))
 
 int select (int, fd_set *__restrict, fd_set *__restrict, fd_set *__restrict, struct timeval *__restrict);
+int pselect (int, fd_set *__restrict, fd_set *__restrict, fd_set *__restrict, const struct timespec *__restrict, const sigset_t *__restrict);
 
 #if defined(_GNU_SOURCE) || defined(_BSD_SOURCE)
 #define NFDBITS (8*(int)sizeof(long))
 #endif
 
+#if _REDIR_TIME64
+__REDIR(select, __select_time64);
+__REDIR(pselect, __pselect_time64);
+#endif
+
 #ifdef __cplusplus
 }
 #endif
-
 #endif

@@ -7,12 +7,13 @@
  * in the LICENSE file.
  */
 
-#include "lib.h"
 #include <unistd.h>
-#include <errno.h>
 #include <string.h>
+#include <fcntl.h>
 #include <signal.h>
+#include <errno.h>
 #include "sys9.h"
+#include "lib.h"
 
 extern char **environ;
 

@@ -10,13 +10,14 @@
 #ifndef __TIME_H
 #define __TIME_H
 
-#include <stddef.h>
 #include <sys/types.h>
 
 #define CLOCKS_PER_SEC 1000
 
 /* obsolsecent, but required */
 #define CLK_TCK CLOCKS_PER_SEC
+
+#include <bits/alltypes.h>
 
 struct tm {
 	int	tm_sec;

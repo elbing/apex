@@ -7,23 +7,25 @@
  * in the LICENSE file.
  */
 
-#include "lib.h"
 #include <signal.h>
 #include <errno.h>
+#include "sys9.h"
+#include "lib.h"
 
 sigset_t _psigblocked;
 
 int
 sigprocmask(int how, const sigset_t *set, sigset_t *oset)
 {
+
 	if(oset)
 		*oset = _psigblocked;
 	if(how==SIG_BLOCK)
-		_psigblocked |= *set;
+		_psigblocked.__bits[0] |= set->__bits[0];
 	else if(how==SIG_UNBLOCK)
-		_psigblocked &= ~*set;
+		_psigblocked.__bits[0] &= ~set->__bits[0];
 	else if(how==SIG_SETMASK)
-		_psigblocked = *set;
+		_psigblocked.__bits[0] = set->__bits[0];
 	else{
 		errno = EINVAL;
 		return -1;

@@ -7,10 +7,10 @@
  * in the LICENSE file.
  */
 
-#include "lib.h"
-#include <string.h>
 #include <stdlib.h>
+#include <string.h>
 #include "sys9.h"
+#include "lib.h"
 #include "dir.h"
 
 enum

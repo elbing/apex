@@ -7,10 +7,10 @@
  * in the LICENSE file.
  */
 
-#include "lib.h"
-#include "sys9.h"
 #include <string.h>
 #include <errno.h>
+#include "sys9.h"
+#include "lib.h"
 
 /* make this global, so programs can look at it if errno is unilluminating */
 

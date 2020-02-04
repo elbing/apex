@@ -14,7 +14,6 @@ extern "C" {
 #endif
 
 #include <stdio.h> /* FILE */
-#include <stddef.h>
 #include <features.h>
 
 #define __NEED_FILE
@@ -33,6 +32,8 @@ extern "C" {
 #if defined(_XOPEN_SOURCE) || defined(_GNU_SOURCE) || defined(_BSD_SOURCE)
 #define __NEED_wctype_t
 #endif
+
+#include <bits/alltypes.h>
 
 #if L'\0'-1 > 0
 #define WCHAR_MAX (0xffffffffu+L'\0')

@@ -7,11 +7,11 @@
  * in the LICENSE file.
  */
 
-#include "lib.h"
-#include <stdlib.h>
 #include <unistd.h>
+#include <stdlib.h>
 #include <errno.h>
 #include "sys9.h"
+#include "lib.h"
 
 int
 __close(int d)

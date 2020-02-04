@@ -7,13 +7,14 @@
  * in the LICENSE file.
  */
 
-#include "lib.h"
-#include <fcntl.h>
-#include <unistd.h>
-#include <signal.h>
-#include <string.h>
 #include <stdio.h>
+#include <unistd.h>
+#include <fcntl.h>
+#include <string.h>
+#include <signal.h>
 #include <errno.h>
+#include "sys9.h"
+#include "lib.h"
 
 static int
 note(int pid, char *msg, char *fmt)

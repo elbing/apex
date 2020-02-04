@@ -7,6 +7,7 @@
  * in the LICENSE file.
  */
 
+#include <unistd.h>
 #include <signal.h>
 
 /*
@@ -15,6 +16,6 @@
 int
 sigpending(sigset_t *set)
 {
-	*set = 0;
+	set = NULL;
 	return 0;
 }

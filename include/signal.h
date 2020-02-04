@@ -10,6 +10,24 @@
 #ifndef __SIGNAL_H
 #define __SIGNAL_H
 
+#include <features.h>
+
+#ifdef _GNU_SOURCE
+#define __ucontext ucontext
+#endif
+
+#define __NEED_size_t
+#define __NEED_pid_t
+#define __NEED_uid_t
+#define __NEED_struct_timespec
+#define __NEED_pthread_t
+#define __NEED_pthread_attr_t
+#define __NEED_time_t
+#define __NEED_clock_t
+#define __NEED_sigset_t
+
+#include <bits/alltypes.h>
+
 typedef int sig_atomic_t;
 
 /*
@@ -63,7 +81,6 @@ extern int raise(int);
 
 #ifdef _POSIX_SOURCE
 
-typedef unsigned long long sigset_t;
 struct sigaction {
 	void		(*sa_handler)();
 	sigset_t	sa_mask;
@@ -81,9 +98,7 @@ struct sigaction {
 extern "C" {
 #endif
 
-#ifdef __TYPES_H
 extern int kill(pid_t, int);
-#endif
 extern int sigemptyset(sigset_t *);
 extern int sigfillset(sigset_t *);
 extern int sigaddset(sigset_t *, int);

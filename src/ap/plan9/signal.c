@@ -7,14 +7,12 @@
  * in the LICENSE file.
  */
 
-#include "lib.h"
-#include "sys9.h"
-#include <signal.h>
-#include <errno.h>
 #include <string.h>
+#include <signal.h>
 #include <setjmp.h>
-
-extern sigset_t	_psigblocked;
+#include <errno.h>
+#include "sys9.h"
+#include "lib.h"
 
 static struct {
 	char	*msg;	/* just check prefix */

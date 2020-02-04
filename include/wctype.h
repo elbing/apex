@@ -14,7 +14,6 @@ extern "C" {
 #endif
 
 #include <stdio.h> /* FILE */
-#include <stddef.h>
 #include <features.h>
 
 #define __NEED_wint_t
@@ -24,6 +23,8 @@ extern "C" {
  || defined(_XOPEN_SOURCE) || defined(_GNU_SOURCE) || defined(_BSD_SOURCE)
 #define __NEED_locale_t
 #endif
+
+#include <bits/alltypes.h>
 
 typedef const int * wctrans_t;
 

@@ -7,10 +7,9 @@
  * in the LICENSE file.
  */
 
-#include "lib.h"
-#include <sys/types.h>
-#include <unistd.h>
 #include <errno.h>
+#include "sys9.h"
+#include "lib.h"
 #include "dir.h"
 
 int

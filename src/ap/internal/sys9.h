@@ -7,7 +7,28 @@
  * in the LICENSE file.
  */
 
-#include <stdint.h>
+#define __NEED_int8_t
+#define __NEED_int16_t
+#define __NEED_int32_t
+#define __NEED_int64_t
+
+#define __NEED_uint8_t
+#define __NEED_uint16_t
+#define __NEED_uint32_t
+#define __NEED_uint64_t
+
+#define __NEED_intptr_t
+#define __NEED_uintptr_t
+
+#define __NEED_intmax_t
+#define __NEED_uintmax_t
+
+#define __NEED_uid_t
+#define	__NEED_gid_t
+
+#define __NEED_sigset_t
+
+#include <bits/alltypes.h>
 
 typedef
 struct Waitmsg

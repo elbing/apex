@@ -7,9 +7,11 @@
  * in the LICENSE file.
  */
 
-#include "lib.h"
 #include <unistd.h>
+#include <fcntl.h>
 #include <errno.h>
+#include "sys9.h"
+#include "lib.h"
 
 int
 __dup(int oldd)

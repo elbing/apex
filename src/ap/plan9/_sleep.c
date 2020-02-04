@@ -7,10 +7,10 @@
  * in the LICENSE file.
  */
 
-#include "lib.h"
 #include <unistd.h>
 #include <time.h>
 #include "sys9.h"
+#include "lib.h"
 
 unsigned int
 __sleep(unsigned int secs)

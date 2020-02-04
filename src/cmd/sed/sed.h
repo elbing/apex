@@ -14,6 +14,9 @@
  *
  */
 
+
+#include <stdint.h>
+
 #define CBRA	1
 #define	CCHR	2
 #define	CDOT	4

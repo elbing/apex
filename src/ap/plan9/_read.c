@@ -7,13 +7,13 @@
  * in the LICENSE file.
  */
 
-#include <errno.h>
 #include <unistd.h>
 #include <string.h>
-#include "lib.h"
+#include <fcntl.h>
+#include <errno.h>
 #include "sys9.h"
+#include "lib.h"
 
-#include <stdio.h>
 
 ssize_t
 __read(int d, void *buf, size_t nbytes)

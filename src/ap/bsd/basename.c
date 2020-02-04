@@ -8,7 +8,6 @@
 
 #include <string.h>
 #include <libgen.h>
-#include "libc.h"
 
 char *basename(char *s)
 {

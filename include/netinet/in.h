@@ -14,7 +14,7 @@ extern "C" {
 #endif
 
 #include <features.h>
-#include <stdint.h>
+#include <inttypes.h>
 #include <sys/socket.h>
 
 typedef uint16_t in_port_t;

@@ -8,27 +8,22 @@
  */
 
 /* posix */
-#include <sys/types.h>
 #include <unistd.h>
 #include <fcntl.h>
 #include <errno.h>
 
-/* bsd extensions */
-#include <sys/uio.h>
-#include <sys/socket.h>
-
 #include "priv.h"
 
-int
-sendto(int fd, void *a, int n, int flags, void *from, int fromlen)
+ssize_t
+sendto(int fd, const void *a, size_t n, int flags, const struct sockaddr *from, socklen_t fromlen)
 {
 	/* actually, should do connect if not done already */
 	return send(fd, a, n, flags);
 }
 
-int
-recvfrom(int fd, void *a, int n, int flags,
-	void *from, int *fromlen)
+ssize_t
+recvfrom(int fd, void *a, size_t n, int flags,
+	 struct sockaddr *from, socklen_t *fromlen)
 {
 	if(getsockname(fd, from, fromlen) < 0)
 		return -1;

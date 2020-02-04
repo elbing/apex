@@ -1,42 +1,56 @@
 /*
- * This file is part of the UCB release of Plan 9. It is subject to the license
- * terms in the LICENSE file found in the top-level directory of this
- * distribution and at http://akaros.cs.berkeley.edu/files/Plan9License. No
- * part of the UCB release of Plan 9, including this file, may be copied,
- * modified, propagated, or distributed except according to the terms contained
- * in the LICENSE file.
+ * Copyright (c) 2005-2014 Rich Felker, et al.
+ * Copyright (c) 2015-2020 HarveyOS et al.
+ *
+ * Use of this source code is governed by a MIT-style
+ * license that can be found in the LICENSE.mit file.
  */
 
-#ifndef __SYS_UIO_H__
-#define __SYS_UIO_H__
-
-#ifndef _BSD_EXTENSION
-    This header file is an extension to ANSI/POSIX
-#endif
+#ifndef _SYS_UIO_H
+#define _SYS_UIO_H
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
+#include <features.h>
 
-/*
- * Copyright (c) 1982, 1986 Regents of the University of California.
- * All rights reserved.  The Berkeley software License Agreement
- * specifies the terms and conditions for redistribution.
- *
- *	@(#)uio.h	7.1 (Berkeley) 6/4/86
- */
+#define __NEED_size_t
+#define __NEED_ssize_t
+#define __NEED_struct_iovec
 
-struct iovec {
-	void	*iov_base;
-	size_t	iov_len;
-};
+#if defined(_GNU_SOURCE) || defined(_BSD_SOURCE)
+#define __NEED_off_t
+#endif
 
-extern ssize_t readv (int, const struct iovec *, int);
-extern ssize_t writev (int, const struct iovec *, int);
+#ifdef _GNU_SOURCE
+#define __NEED_pid_t
+#endif
+
+#include <bits/alltypes.h>
+
+#define UIO_MAXIOV 1024
+
+ssize_t readv (int, const struct iovec *, int);
+ssize_t writev (int, const struct iovec *, int);
+
+#if defined(_GNU_SOURCE) || defined(_BSD_SOURCE)
+ssize_t preadv (int, const struct iovec *, int, off_t);
+ssize_t pwritev (int, const struct iovec *, int, off_t);
+#if defined(_LARGEFILE64_SOURCE) || defined(_GNU_SOURCE)
+#define preadv64 preadv
+#define pwritev64 pwritev
+#define off64_t off_t
+#endif
+#endif
+
+#ifdef _GNU_SOURCE
+ssize_t process_vm_writev(pid_t, const struct iovec *, unsigned long, const struct iovec *, unsigned long, unsigned long);
+ssize_t process_vm_readv(pid_t, const struct iovec *, unsigned long, const struct iovec *, unsigned long, unsigned long);
+#endif
 
 #ifdef __cplusplus
 }
 #endif
 
-#endif /* !__SYS_UIO_H__ */
+#endif

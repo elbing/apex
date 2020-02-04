@@ -1,7 +1,7 @@
 #include <signal.h>
 #include <setjmp.h>
-#include "lib.h"
 #include "sys9.h"
+#include "lib.h"
 
 /* A stack to hold pcs when signals nest */
 #define MAXSIGSTACK 20
@@ -55,18 +55,5 @@ extern sigset_t	_psigblocked;
 void
 siglongjmp(sigjmp_buf j, int ret)
 {
-	struct Ureg *u;
-
-	if(j[0])
-		_psigblocked = j[1];
-	if(nstack == 0 || pcstack[nstack-1].u->sp > j[2+JMPBUFSP])
-		longjmp(j+2, ret);
-	u = pcstack[nstack-1].u;
-	nstack--;
-	u->ax = ret;
-	if(ret == 0)
-		u->ax = 1;
-	u->ip = j[2+JMPBUFPC];
-	u->sp = j[2+JMPBUFSP] + 8;
-	noted(NRSTR);
+    longjmp(j, ret);
 }

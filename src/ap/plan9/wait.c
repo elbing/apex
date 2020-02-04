@@ -7,17 +7,16 @@
  * in the LICENSE file.
  */
 
-#include "lib.h"
-#include <stdlib.h>
-#include <sys/wait.h>
-#include <sys/time.h>
-#include <sys/resource.h>
-#include <sys/stat.h>
-#include <unistd.h>
-#include <string.h>
-#include <errno.h>
 #include <stdio.h>
+#include <unistd.h>
+#include <stdlib.h>
+#include <string.h>
+#include <signal.h>
+#include <sys/resource.h>
+#include <sys/wait.h>
+#include <errno.h>
 #include "sys9.h"
+#include "lib.h"
 #include "dir.h"
 
 /*

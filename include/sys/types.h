@@ -1,69 +1,93 @@
 /*
- * This file is part of the UCB release of Plan 9. It is subject to the license
- * terms in the LICENSE file found in the top-level directory of this
- * distribution and at http://akaros.cs.berkeley.edu/files/Plan9License. No
- * part of the UCB release of Plan 9, including this file, may be copied,
- * modified, propagated, or distributed except according to the terms contained
- * in the LICENSE file.
+ * Copyright (c) 2005-2014 Rich Felker, et al.
+ * Copyright (c) 2015-2020 HarveyOS et al.
+ *
+ * Use of this source code is governed by a MIT-style
+ * license that can be found in the LICENSE.mit file.
  */
 
-#ifndef __TYPES_H
-#define __TYPES_H
-
-typedef	unsigned short	ino_t;
-typedef	unsigned short	dev_t;
-typedef	long long		off_t;
-typedef unsigned short	mode_t;
-typedef short		uid_t;
-typedef short		gid_t;
-typedef short		nlink_t;
-typedef int		pid_t;
-
-#ifndef _SIZE_T
-#define _SIZE_T
-typedef unsigned long size_t;
-#endif
-#ifndef _SSIZE_T
-#define _SSIZE_T
-typedef long ssize_t;
+#ifndef	_SYS_TYPES_H
+#define	_SYS_TYPES_H
+#ifdef __cplusplus
+extern "C" {
 #endif
 
-#ifndef _TIME_T
-#define _TIME_T
-typedef long int time_t;
+#include <features.h>
+
+#define __NEED_ino_t
+#define __NEED_dev_t
+#define __NEED_uid_t
+#define __NEED_gid_t
+#define __NEED_mode_t
+#define __NEED_nlink_t
+#define __NEED_off_t
+#define __NEED_pid_t
+#define __NEED_size_t
+#define __NEED_ssize_t
+#define __NEED_time_t
+#define __NEED_timer_t
+#define __NEED_clockid_t
+
+#define __NEED_blkcnt_t
+#define __NEED_fsblkcnt_t
+#define __NEED_fsfilcnt_t
+
+#define __NEED_id_t
+#define __NEED_key_t
+#define __NEED_clock_t
+#define __NEED_suseconds_t
+#define __NEED_blksize_t
+
+#define __NEED_pthread_t
+#define __NEED_pthread_attr_t
+#define __NEED_pthread_mutexattr_t
+#define __NEED_pthread_condattr_t
+#define __NEED_pthread_rwlockattr_t
+#define __NEED_pthread_barrierattr_t
+#define __NEED_pthread_mutex_t
+#define __NEED_pthread_cond_t
+#define __NEED_pthread_rwlock_t
+#define __NEED_pthread_barrier_t
+#define __NEED_pthread_spinlock_t
+#define __NEED_pthread_key_t
+#define __NEED_pthread_once_t
+#define __NEED_useconds_t
+
+#if defined(_GNU_SOURCE) || defined(_BSD_SOURCE)
+#define __NEED_int8_t
+#define __NEED_int16_t
+#define __NEED_int32_t
+#define __NEED_int64_t
+#define __NEED_u_int64_t
+#define __NEED_register_t
 #endif
 
-#ifndef _CLOCK_T
-#define _CLOCK_T
-typedef long int clock_t;
+#include <bits/alltypes.h>
+
+#if defined(_GNU_SOURCE) || defined(_BSD_SOURCE)
+typedef unsigned char u_int8_t;
+typedef unsigned short u_int16_t;
+typedef unsigned u_int32_t;
+typedef char *caddr_t;
+typedef unsigned char u_char;
+typedef unsigned short u_short, ushort;
+typedef unsigned u_int, uint;
+typedef unsigned long u_long, ulong;
+typedef long long quad_t;
+typedef unsigned long long u_quad_t;
+#include <endian.h>
+#include <sys/select.h>
 #endif
 
-#ifndef __TIMEVAL__
-#define __TIMEVAL__
-struct timeval {
-	time_t	tv_sec;
-	long int	tv_usec;
-};
+#if defined(_LARGEFILE64_SOURCE) || defined(_GNU_SOURCE)
+#define blkcnt64_t blkcnt_t
+#define fsblkcnt64_t fsblkcnt_t
+#define fsfilcnt64_t fsfilcnt_t
+#define ino64_t ino_t
+#define off64_t off_t
 #endif
 
-#ifndef __TIMESPEC__
-#define __TIMESPEC__
-struct timespec {
-	time_t tv_sec;
-	long tv_nsec;
-};
-#endif
-
-#ifdef _BSD_EXTENSION
-struct timezone {
-	int	tz_minuteswest;
-	int	tz_dsttime;
-};
-
-#ifndef _CADDR_T
-#define _CADDR_T
-typedef char * caddr_t;
+#ifdef __cplusplus
+}
 #endif
 #endif
-
-#endif /* __TYPES_H */

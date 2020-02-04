@@ -7,8 +7,6 @@
  * in the LICENSE file.
  */
 
-#include "lib.h"
-#include <sys/stat.h>
 #include <fcntl.h>
 
 int

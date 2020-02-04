@@ -7,11 +7,12 @@
  * in the LICENSE file.
  */
 
-#include "lib.h"
-#include <stdlib.h>
 #include <stdio.h>
-#include <sys/wait.h>
 #include <unistd.h>
+#include <stdlib.h>
+#include <sys/wait.h>
+#include "sys9.h"
+#include "lib.h"
 
 int
 system(const char *s)

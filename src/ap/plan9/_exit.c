@@ -7,12 +7,12 @@
  * in the LICENSE file.
  */
 
-#include "lib.h"
-#include "sys9.h"
+#include <unistd.h>
 #include <stdlib.h>
 #include <string.h>
-#include <unistd.h>
 #include <signal.h>
+#include "sys9.h"
+#include "lib.h"
 
 int _finishing = 0;
 int _sessleader = 0;

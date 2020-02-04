@@ -8,12 +8,9 @@
 
 /* TODO locks must be back when APEX had pthreads" */
 
-#include <libintl.h>
-#include <stdlib.h>
 #include <string.h>
 #include <errno.h>
 #include <limits.h>
-#include <sys/stat.h>
 #include <ctype.h>
 #include "locale_impl.h"
 #include "libc.h"

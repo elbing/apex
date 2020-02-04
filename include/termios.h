@@ -118,6 +118,8 @@
 #define TCIOFF 2
 #define TCION  3
 
+#include <bits/alltypes.h>
+
 typedef unsigned long tcflag_t;
 typedef unsigned long speed_t;
 typedef unsigned char cc_t;

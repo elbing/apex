@@ -8,18 +8,12 @@
  */
 
 /* posix */
-#include <sys/types.h>
-#include <unistd.h>
-#include <stdlib.h>
-#include <stdio.h>
+
+#include <sys/socket.h>
+#include <errno.h>
 #include <string.h>
 #include <fcntl.h>
-#include <errno.h>
-
-/* socket extensions */
-#include <sys/uio.h>
-#include <sys/socket.h>
-
+#include <unistd.h>
 #include "priv.h"
 
 /* we can't avoid overrunning npath because we don't know how big it is. */

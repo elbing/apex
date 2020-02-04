@@ -7,12 +7,11 @@
  * in the LICENSE file.
  */
 
-#include "lib.h"
-#include <sys/stat.h>
-#include <stdlib.h>
 #include <unistd.h>
+#include <stdlib.h>
 #include <errno.h>
 #include "sys9.h"
+#include "lib.h"
 
 pid_t
 getpid(void)

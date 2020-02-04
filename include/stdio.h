@@ -13,10 +13,7 @@
 /*
  * pANS stdio.h
  */
-#include <stdarg.h>
-#include <stddef.h>
-#include <stdint.h>
-#include <sys/types.h>
+
 /*
  * According to X3J11, there is only one i/o buffer
  * and it must not be occupied by both input and output data.
@@ -37,6 +34,26 @@
  *					:*(f)->wp++=_IO_ctmp)
  *
  */
+
+#include <features.h>
+
+#define __NEED_FILE
+#define __NEED___isoc_va_list
+#define __NEED_size_t
+
+#if __STDC_VERSION__ < 201112L
+#define __NEED_struct__IO_FILE
+#endif
+
+#if defined(_POSIX_SOURCE) || defined(_POSIX_C_SOURCE) \
+ || defined(_XOPEN_SOURCE) || defined(_GNU_SOURCE) \
+ || defined(_BSD_SOURCE)
+#define __NEED_ssize_t
+#define __NEED_off_t
+#define __NEED_va_list
+#endif
+
+#include <bits/alltypes.h>
 
 typedef struct _IO_FILE FILE;
 
@@ -81,8 +98,6 @@ extern FILE *const stderr;
 #ifdef __cplusplus
 extern "C" {
 #endif
-
-#include <features.h>
 
 extern int __remove(const char *);
 #define remove __remove

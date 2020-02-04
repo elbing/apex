@@ -7,15 +7,13 @@
  * in the LICENSE file.
  */
 
-#include "lib.h"
-#include <stdlib.h>
-#include <sys/stat.h>
-#include <fcntl.h>
-#include <dirent.h>
 #include <unistd.h>
+#include <stdlib.h>
 #include <string.h>
+#include <fcntl.h>
 #include <signal.h>
 #include "sys9.h"
+#include "lib.h"
 #include "dir.h"
 
 /*

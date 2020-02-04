@@ -7,7 +7,7 @@
  * in the LICENSE file.
  */
 
-#include <stddef.h>
+#include <unistd.h>
 #include <grp.h>
 
 extern int _getpw(int *, char **, char **);

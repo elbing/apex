@@ -1,6 +1,6 @@
 /*
  * Copyright (c) 2005-2014 Rich Felker, et al.
- * Copyright (c) 2015-2016 Álvaro Jurado et al.
+ * Copyright (c) 2015-2020 HarveyOS et al.
  *
  * Use of this source code is governed by a MIT-style
  * license that can be found in the LICENSE.mit file.
@@ -14,7 +14,16 @@ extern "C" {
 #endif
 
 #include <features.h>
-#include <stddef.h>
+
+#ifdef __cplusplus
+#ifndef NULL
+#define NULL 0L
+#endif
+#else
+#ifndef NULL
+#define NULL ((void*)0)
+#endif
+#endif
 
 #define LC_CTYPE    0
 #define LC_NUMERIC  1
@@ -61,6 +70,8 @@ struct lconv *localeconv(void);
  || defined(_XOPEN_SOURCE) || defined(_GNU_SOURCE) || defined(_BSD_SOURCE)
 
 #define __NEED_locale_t
+
+#include <bits/alltypes.h>
 
 #define LC_GLOBAL_LOCALE ((locale_t)-1)
 

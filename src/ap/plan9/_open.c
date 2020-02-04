@@ -7,14 +7,14 @@
  * in the LICENSE file.
  */
 
-#include <errno.h>
-#include <stdarg.h>
-#include <stdlib.h>
 #include <unistd.h>
+#include <stdlib.h>
 #include <string.h>
-#include "lib.h"
-#include <sys/stat.h>
+#include <fcntl.h>
+#include <stdarg.h>
+#include <errno.h>
 #include "sys9.h"
+#include "lib.h"
 
 /*
  * O_NOCTTY has no effect

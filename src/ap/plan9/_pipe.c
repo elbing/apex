@@ -7,10 +7,11 @@
  * in the LICENSE file.
  */
 
-#include <errno.h>
 #include <unistd.h>
-#include "lib.h"
+#include <fcntl.h>
+#include <errno.h>
 #include "sys9.h"
+#include "lib.h"
 
 int
 __pipe(int fildes[2])

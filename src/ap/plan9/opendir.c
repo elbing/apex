@@ -7,14 +7,15 @@
  * in the LICENSE file.
  */
 
-#include "lib.h"
+#include <unistd.h>
 #include <stdlib.h>
+#include <fcntl.h>
+#include <string.h>
 #include <sys/stat.h>
 #include <dirent.h>
-#include <unistd.h>
 #include <errno.h>
-#include <string.h>
 #include "sys9.h"
+#include "lib.h"
 #include "dir.h"
 
 #define DBLOCKSIZE 20

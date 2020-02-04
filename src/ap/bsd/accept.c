@@ -8,7 +8,6 @@
  */
 
 /* posix */
-#include <sys/types.h>
 #include <unistd.h>
 #include <stdlib.h>
 #include <stdio.h>
@@ -18,17 +17,16 @@
 #include <sys/stat.h>
 
 /* bsd extensions */
-#include <sys/uio.h>
-#include <sys/socket.h>
 #include <netinet/in.h>
 #include <sys/un.h>
 
 #include "priv.h"
 
 int
-accept(int fd, void *a, int *alen)
+accept(int fd, struct sockaddr *a, socklen_t *alen)
 {
-	int n, nfd, cfd;
+	int nfd, cfd;
+	socklen_t n;
 	Rock *r, *nr;
 	struct sockaddr_in *ip;
 	char name[Ctlsize];
