@@ -481,16 +481,16 @@ c_trap(wp)
 	wp += builtin_opt.optind;
 
 	if (*wp == NULL) {
-		//int anydfl = 0; /* disabled in following if0
+		int anydfl = 0;
 
 		for (p = sigtraps, i = SIGNALS+1; --i >= 0; p++) {
-			//if (p->trap == NULL)
-				//anydfl = 1;
-			//else {
+			if (p->trap == NULL)
+				anydfl = 1;
+			else {
 				shprintf("trap -- ");
 				print_value_quoted(p->trap);
 				shprintf(" %s\n", p->name);
-			//}
+			}
 		}
 #if 0 /* this is ugly and not clear POSIX needs it */
 		/* POSIX may need this so output of trap can be saved and
