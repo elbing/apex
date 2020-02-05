@@ -11,6 +11,7 @@
 #include <sys/types.h>
 #include <unistd.h>
 #include <ctype.h>
+#include <sys/stat.h>
 
 /* bsd extensions */
 #include <sys/uio.h>

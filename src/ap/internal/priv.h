@@ -7,10 +7,6 @@
  * in the LICENSE file.
  */
 
-#include <stdio.h>
-#include <sys/stat.h>
-#include <netinet/in.h>
-
 typedef struct Rock Rock;
 
 enum

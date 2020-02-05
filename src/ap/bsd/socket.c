@@ -18,6 +18,7 @@
 #include <sys/stat.h>
 
 /* bsd extensions */
+#include <netinet/in.h>
 #include <sys/uio.h>
 #include <sys/socket.h>
 

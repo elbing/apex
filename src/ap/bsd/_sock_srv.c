@@ -9,11 +9,13 @@
 
 /* posix */
 
-#include <sys/socket.h>
-#include <errno.h>
+#include <stdio.h>
+#include <unistd.h>
 #include <string.h>
 #include <fcntl.h>
-#include <unistd.h>
+#include <sys/stat.h>
+#include <netinet/in.h>
+#include <errno.h>
 #include "priv.h"
 
 /* we can't avoid overrunning npath because we don't know how big it is. */

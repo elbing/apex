@@ -10,8 +10,9 @@
 /* posix */
 #include <unistd.h>
 #include <fcntl.h>
+#include <sys/stat.h>
 #include <errno.h>
-
+#include <netinet/in.h>
 #include "priv.h"
 
 ssize_t

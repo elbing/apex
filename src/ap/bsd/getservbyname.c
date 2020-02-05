@@ -16,6 +16,7 @@
 #include <string.h>
 #include <errno.h>
 #include <ctype.h>
+#include <sys/stat.h>
 
 /* bsd extensions */
 #include <sys/uio.h>

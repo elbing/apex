@@ -14,8 +14,10 @@
 #include <fcntl.h>
 #include <errno.h>
 #include <string.h>
+#include <sys/stat.h>
 
 /* bsd extensions */
+#include <netinet/in.h>
 #include <arpa/inet.h>
 #include <sys/un.h>
 
