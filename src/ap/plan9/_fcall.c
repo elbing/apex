@@ -7,11 +7,12 @@
  * in the LICENSE file.
  */
 
-#include	<string.h>
-#include	"sys9.h"
-#include	"lib.h"
-#include	"dir.h"
-#include	"fcall.h"
+#include <string.h>
+#include <sys/stat.h>
+#include "sys9.h"
+#include "lib.h"
+#include "dir.h"
+#include "fcall.h"
 
 typedef unsigned char uchar;
 typedef unsigned char uint8_t;

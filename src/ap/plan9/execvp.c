@@ -8,8 +8,8 @@
  */
 
 #include <unistd.h>
-#include <sys/limits.h>
 #include <string.h>
+#include <limits.h>
 
 extern char **environ;
 

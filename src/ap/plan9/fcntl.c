@@ -11,6 +11,7 @@
 #include <fcntl.h>
 #include <errno.h>
 #include <stdarg.h>
+#include <limits.h>
 #include "sys9.h"
 #include "lib.h"
 

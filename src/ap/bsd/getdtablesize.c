@@ -8,7 +8,7 @@
  */
 
 /* posix */
-#include <sys/limits.h>
+#include <limits.h>
 
 int
 getdtablesize(void)

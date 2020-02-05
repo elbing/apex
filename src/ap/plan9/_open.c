@@ -12,6 +12,7 @@
 #include <string.h>
 #include <fcntl.h>
 #include <stdarg.h>
+#include <limits.h>
 #include <errno.h>
 #include "sys9.h"
 #include "lib.h"

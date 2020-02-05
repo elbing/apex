@@ -9,6 +9,7 @@
 
 #include <unistd.h>
 #include <stdlib.h>
+#include <limits.h>
 #include <errno.h>
 #include "sys9.h"
 #include "lib.h"

@@ -1,6 +1,7 @@
 #define _OLD_APE
 #include <signal.h>
 #include <setjmp.h>
+#include <ureg.h>
 #include "sys9.h"
 #include "lib.h"
 

@@ -14,6 +14,7 @@
 #include <signal.h>
 #include <sys/resource.h>
 #include <sys/wait.h>
+#include <sys/stat.h>
 #include <errno.h>
 #include "sys9.h"
 #include "lib.h"

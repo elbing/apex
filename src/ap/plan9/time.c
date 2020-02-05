@@ -7,8 +7,6 @@
  * in the LICENSE file.
  */
 
-#include <sys/types.h>
-#include <sys/stat.h>
 #include <fcntl.h>
 #include <time.h>
 #include <unistd.h>

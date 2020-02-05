@@ -7,9 +7,6 @@
  * in the LICENSE file.
  */
 
-#include <sys/stat.h> /* for dirtostat */
-#include <stdint.h> /* for types */
-
 #define	GBIT8(p)	((p)[0])
 #define	GBIT16(p)	((p)[0]|((p)[1]<<8))
 #define	GBIT32(p)	((p)[0]|((p)[1]<<8)|((p)[2]<<16)|((p)[3]<<24))

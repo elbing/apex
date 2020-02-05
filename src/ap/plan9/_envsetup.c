@@ -13,6 +13,8 @@
 #include <string.h>
 #include <fcntl.h>
 #include <signal.h>
+#include <limits.h>
+#include <sys/stat.h>
 #include "sys9.h"
 #include "lib.h"
 #include "dir.h"

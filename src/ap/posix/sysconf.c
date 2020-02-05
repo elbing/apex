@@ -12,7 +12,6 @@
 #include	<limits.h>
 #include	<time.h>
 #include	<errno.h>
-#include	<sys/limits.h>
 
 long
 sysconf(int name)

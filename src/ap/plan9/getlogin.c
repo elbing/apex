@@ -7,11 +7,9 @@
  * in the LICENSE file.
  */
 
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <fcntl.h>
 #include <unistd.h>
-#include <sys/limits.h>
+#include <fcntl.h>
+#include <limits.h>
 
 char *
 getlogin_r(char *buf, int len)

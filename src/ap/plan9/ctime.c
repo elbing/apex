@@ -39,8 +39,6 @@
  * ctime(t) just calls localtime, then asctime.
  */
 
-#include <sys/types.h>
-#include <sys/stat.h>
 #include <fcntl.h>
 #include <time.h>
 #include <unistd.h>

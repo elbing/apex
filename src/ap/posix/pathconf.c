@@ -10,7 +10,6 @@
 #include	<unistd.h>
 #include	<limits.h>
 #include	<errno.h>
-#include	<sys/limits.h>
 
 long
 pathconf(const char *c, int name)

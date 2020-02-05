@@ -10,7 +10,6 @@
 #include <string.h>
 #include "sys9.h"
 #include "lib.h"
-#include "dir.h"
 
 int
 _isatty(int fd)

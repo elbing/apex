@@ -9,7 +9,7 @@
 
 #include <unistd.h>
 #define	NONEXIT	34
-extern void (*_atexitfns[NONEXIT])(void);
+void (*_atexitfns[NONEXIT])(void);
 
 int
 __atexit(void (*f)(void))

@@ -13,7 +13,6 @@
 #include <fmt.h>
 #include "sys9.h"
 #include "lib.h"
-#include "dir.h"
 
 /*
  * Format:

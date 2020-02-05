@@ -12,7 +12,6 @@
 #include <errno.h>
 #include "sys9.h"
 #include "lib.h"
-#include "dir.h"
 
 char*
 getcwd(char *buf, size_t len)

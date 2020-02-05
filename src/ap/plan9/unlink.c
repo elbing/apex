@@ -11,6 +11,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <limits.h>
+#include <sys/stat.h>
 #include <errno.h>
 #include "sys9.h"
 #include "lib.h"

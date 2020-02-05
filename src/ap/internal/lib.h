@@ -7,9 +7,6 @@
  * in the LICENSE file.
  */
 
-#include <sys/limits.h>
-#include <ureg.h>
-
 typedef struct Ureg Ureg;
 
 /* mux buf for selecting (see _buf.c) */

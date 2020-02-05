@@ -9,7 +9,7 @@
 #include <unistd.h>
 #include <stdarg.h>
 #include <string.h>
-#include <sys/limits.h>
+#include <limits.h>
 
 extern char **environ;
 
