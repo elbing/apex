@@ -97,6 +97,7 @@ void settype(char *s)	/* initialize data for particular typesetter */
 		{ minsize = 5; ttype = DEV202; }
 }
 
+int
 getdata(void)
 {
 	int i, type, ln;
@@ -145,9 +146,10 @@ getdata(void)
 	return(0);
 }
 
+int
 getline(char *s)
 {
-	register c;
+	int c;
 
 	while ((c=input()) != '\n' && c != EOF && c != lefteq) {
 		if (s >= in+MAXLINE) {
@@ -238,6 +240,7 @@ void init(void)
 		printf(".nr 99 \\n(.s\n");
 }
 
+int
 salloc(void)
 {
 	int i;
@@ -314,6 +317,7 @@ char *DPS(int f, int t)	/* delta ps (t-f) in printable form \s+d or \s-d or \s+-
 	return p;
 }
 
+int
 EFFPS(int n)	/* effective value of n */
 {
 	if (n >= minsize)

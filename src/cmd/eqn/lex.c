@@ -22,6 +22,7 @@ void	ifdef(void);
 void	include(void);
 void	delim(void);
 
+int
 yylex(void)
 {
 	register int c;
@@ -56,7 +57,7 @@ yylex(void)
 				ERROR "quoted string %.20s... too long", token FATAL;
 		}
 		token[sp] = '\0';
-		yylval = (int) &token[0];
+		yylval = (long int) &token[0];
 		if (c == '\n')
 			ERROR "missing \" in %.20s", token WARNING;
 		return(QTEXT);
@@ -150,9 +151,10 @@ void getstr(char *s, int n)
 	}
 	unput(c);
 	*p = '\0';
-	yylval = (int) s;
+	yylval = (long int) s;
 }
 
+int
 cstr(char *s, int quote, int maxs)
 {
 	int del, c, i;

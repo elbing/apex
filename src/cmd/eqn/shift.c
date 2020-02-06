@@ -106,8 +106,8 @@ void shift2(int p1, int p2, int p3)
 	else
 		sh2 = SS2space;
 	/*n = max(class[rclass[p1]][lclass[p2]], class[rclass[p1]][lclass[p3]]);
-	/*sh2 = pad(max(2, n));
-	*/
+	 *sh2 = pad(max(2, n));
+	 */
 	printf(".ds %d %s\\*(%d\n", p2, SS1space, p2);
 	nrwid(p2, subps, p2);
 	printf(".ds %d %s\\*(%d\n", p3, sh2, p3);

@@ -9,6 +9,7 @@
 
 #include "e.h"
 #include "y.tab.h"
+#include <stdint.h>
 #include <ctype.h>
 #include <utf.h>
 
@@ -122,13 +123,13 @@ void text(int t, char *p1)	/* convert text string p1 of type t */
 	printf(".ds %d \"%s\n", yyval, p);
 }
 
-int isdigitrune(int c)
+int _isdigitrune(int c)
 {
 	return ('0'<=c && c<='9');
 }
 
 int
-trans(int c, char *)
+trans(int c, char *ch)
 {
 	int f;
 
@@ -142,7 +143,7 @@ trans(int c, char *)
 		cadd(c);
 		return ROM;
 	}
-	if (isdigitrune(c)) {
+	if (_isdigitrune(c)) {
 		shim(pclass, nclass = DIG);
 		roman(c);
 		return ROM;	/* this is the right side font of this object */
