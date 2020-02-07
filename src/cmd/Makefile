@@ -1,6 +1,6 @@
 include $(APEX)/src/$(OS).inc
 
-DIRS = awk eqn sed troff pdksh
+DIRS = awk eqn pic sed troff pdksh
 BUILDDIRS=$(DIRS:%=build-%)
 INSTALLDIRS=$(DIRS:%=install-%)
 CLEANDIRS=$(DIRS:%=clean-%)

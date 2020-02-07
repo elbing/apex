@@ -56,6 +56,7 @@ void	getdata(void), setdefaults(void);
 void	setfval(char *, double);
 int	getpid(void);
 
+int
 main(int argc, char *argv[])
 {
 	char buf[20];
@@ -127,7 +128,7 @@ char *grow(char *ptr, char *name, int num, int size)	/* make array bigger */
 static struct {
 	char *name;
 	double val;
-	int16_t scalable;		/* 1 => adjust when "scale" changes */
+	short scalable;		/* 1 => adjust when "scale" changes */
 } defaults[] ={
 	"scale", SCALE, 1,
 	"lineht", HT, 1,
@@ -231,14 +232,14 @@ void getdata(void)
 				if (sscanf(&buf[4],"%lf %lf", &deltx, &delty) < 2)
 					delty = deltx * (ymax-ymin) / (xmax-xmin);
 				/* else {
-				/*	double xfac, yfac; */
-				/*	xfac = deltx / (xmax-xmin);
-				/*	yfac = delty / (ymax-ymin);
-				/*	if (xfac <= yfac)
-				/*		delty = xfac * (ymax-ymin);
-				/*	else
-				/*		deltx = yfac * (xmax-xmin);
-				/*}
+				 *	double xfac, yfac;
+				 *	xfac = deltx / (xmax-xmin);
+				 *	yfac = delty / (ymax-ymin);
+				 *	if (xfac <= yfac)
+				 *		delty = xfac * (ymax-ymin);
+				 *	else
+				 *		deltx = yfac * (xmax-xmin);
+				 *}
 				*/
 			}
 			dprintf("deltx = %g, delty = %g\n", deltx, delty);

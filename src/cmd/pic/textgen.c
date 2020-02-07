@@ -11,13 +11,14 @@
 #include	"pic.h"
 #include	"y.tab.h"
 
+static double prevh = 0;
+static double prevw = 0;
+
 obj *textgen(void)
 {
 	int i, sub, nstr, at, with, hset, invis;
 	double xwith, ywith, h, w, x0, y0, x1, y1;
 	obj *p, *ppos;
-	static double prevh = 0;
-	static double prevw = 0;
 	Attr *ap;
 
 	at = with = nstr = hset = invis = 0;

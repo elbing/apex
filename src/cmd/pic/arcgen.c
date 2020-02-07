@@ -199,8 +199,10 @@ void arc_extreme(double x0, double y0, double x1, double y1, double xc, double y
 		k = quadrant(x1,y1);
 		if (j == k && y1*x0 < x1*y0) {
 			/* viewed as complex numbers, if Im(z1/z0)<0, arc is big */
-			if( xmin > -r) xmin = -r; if( ymin > -r) ymin = -r;
-			if( xmax <  r) xmax =  r; if( ymax <  r) ymax =  r;
+			if( xmin > -r) xmin = -r;
+			if( ymin > -r) ymin = -r;
+			if( xmax <  r) xmax =  r;
+			if( ymax <  r) ymax =  r;
 		} else {
 			while (j != k) {
 				switch (j) {
@@ -219,6 +221,7 @@ void arc_extreme(double x0, double y0, double x1, double y1, double xc, double y
 	extreme(xmax, ymax);
 }
 
+int
 quadrant(double x, double y)
 {
 	if (     x>=0.0 && y> 0.0) return(1);

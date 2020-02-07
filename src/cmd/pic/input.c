@@ -151,6 +151,7 @@ char *delimstr(char *s)	/* get body of X ... X */
 	return tostring(buf);
 }
 
+int
 baldelim(int c, char *s)	/* replace c by balancing entry in s */
 {
 	for ( ; *s; s += 2)
@@ -201,6 +202,7 @@ void dodef(struct symtab *stp)	/* collect args and switch input to defn */
 	pushsrc(Macro, stp->s_val.p);
 }
 
+int
 getarg(char *p)	/* pick up single argument, store in p, return length */
 {
 	int n, c, npar;
@@ -241,6 +243,7 @@ extern	int	thru;
 extern	struct symtab	*thrudef;
 extern	char	*untilstr;
 
+int
 input(void)
 {
 	register int c;
@@ -257,6 +260,7 @@ input(void)
 	return *(unsigned char *)ep++ = c;
 }
 
+int
 nextchar(void)
 {
 	register int c;
@@ -410,6 +414,7 @@ void do_thru(void)	/* read one line, make into a macro expansion */
 	pushsrc(Macro, thrudef->s_val.p);
 }
 
+int
 unput(int c)
 {
 	if (++pb >= pbuf + sizeof pbuf)

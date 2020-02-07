@@ -31,7 +31,7 @@ obj *linegen(int type)
 	double dx[500], dy[500];
 	int ndxy;
 	double nx, ny;
-	Attr *ap, *chop_ap[4];
+	Attr *ap; //, *chop_ap[4];
 
 	nx = curx;
 	ny = cury;
@@ -150,7 +150,7 @@ obj *linegen(int type)
 				else
 					chop2 = ap->a_val.f;
 			}
-			chop_ap[chop++] = ap;
+			//[chop++] = ap;
 			break;
 		case FILL:
 			battr |= FILLBIT;
@@ -232,9 +232,11 @@ obj *linegen(int type)
 		if (type == LINE || type == ARROW)
 			extreme(nx += dx[i], ny += dy[i]);
 		else if (type == SPLINE && i < ndxy-1) {
-			/* to compute approx extreme of spline at p,
-			/* compute midway between p-1 and p+1,
-			/* then go 3/4 from there to p */
+			/* 
+			 * to compute approx extreme of spline at p,
+			 * compute midway between p-1 and p+1,
+			 * then go 3/4 from there to p
+			 */
 			double ex, ey, xi, yi, xi1, yi1;
 			xi = nx + dx[i]; yi = ny + dy[i];	/* p */
 			xi1 = xi + dx[i+1]; yi1 = yi + dy[i+1];	/* p+1 */

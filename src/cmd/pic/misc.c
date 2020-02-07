@@ -18,6 +18,7 @@ int whatpos(obj *p, int corner, double *px, double *py);
 void makeattr(int type, int sub, YYSTYPE val);
 YYSTYPE getblk(obj *, char *);
 
+int
 setdir(int n)	/* set direction (hvmode) from LEFT, RIGHT, etc. */
 {
 	switch (n) {
@@ -29,6 +30,7 @@ setdir(int n)	/* set direction (hvmode) from LEFT, RIGHT, etc. */
  	return(hvmode);
 }
 
+int
 curdir(void)	/* convert current dir (hvmode) to RIGHT, LEFT, etc. */
 {
 	switch (hvmode) {
