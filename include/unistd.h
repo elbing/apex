@@ -131,6 +131,7 @@ extern int setpgid(pid_t, pid_t);
 extern pid_t setsid(void);
 
 /* files and directories */
+extern int fchdir(int);
 extern int __chdir(const char *);
 #define chdir __chdir
 extern int link(const char *, const char *);
