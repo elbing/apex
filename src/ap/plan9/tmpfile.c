@@ -9,6 +9,7 @@
 
 #include "stdio_impl.h"
 #include <unistd.h>
+#include <stdlib.h>
 #include <string.h>
 #include "sys9.h"
 #include "lib.h"

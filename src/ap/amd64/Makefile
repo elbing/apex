@@ -6,6 +6,7 @@ SRCS =\
 
 SRC =\
 	sigsetjmp.s \
+	tas.s \
 
 OBJS = ${SRC:.s=.o}
 OBJ = ${SRCS:.c=.o}

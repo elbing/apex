@@ -50,3 +50,5 @@ char *fgets(char *restrict s, int n, FILE *restrict f)
 
 	return s;
 }
+
+weak_alias(fgets, fgets_unlocked);

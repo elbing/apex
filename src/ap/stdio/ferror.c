@@ -17,3 +17,5 @@ int ferror(FILE *f)
 	FUNLOCK(f);
 	return ret;
 }
+
+weak_alias(ferror, ferror_unlocked);

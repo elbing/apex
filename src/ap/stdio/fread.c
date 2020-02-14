@@ -41,3 +41,5 @@ size_t fread(void *restrict destv, size_t size, size_t nmemb, FILE *restrict f)
 	FUNLOCK(f);
 	return nmemb;
 }
+
+weak_alias(fread, fread_unlocked);

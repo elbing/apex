@@ -1,0 +1,15 @@
+
+#include "sys9.h"
+#include "lock.h"
+
+static Lock fmtl;
+
+void __lock(volatile int *l)
+{
+	lock(&fmtl);
+}
+
+void __unlock(volatile int *l)
+{
+	unlock(&fmtl);
+}

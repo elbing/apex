@@ -12,6 +12,7 @@
 #include <errno.h>
 #include <string.h>
 #include "libc.h"
+#include "lock.h"
 
 int readdir_r(DIR *restrict dir, struct dirent *restrict buf, struct dirent **restrict result)
 {
@@ -19,18 +20,18 @@ int readdir_r(DIR *restrict dir, struct dirent *restrict buf, struct dirent **re
 	int errno_save = errno;
 	int ret;
 
-	//LOCK(dir->lock);
+	LOCK(dir->lock);
 	errno = 0;
 	de = readdir(dir);
 	if ((ret = errno)) {
-	//	UNLOCK(dir->lock);
+		UNLOCK(dir->lock);
 		return ret;
 	}
 	errno = errno_save;
 	if (de) memcpy(buf, de, de->d_reclen);
 	else buf = NULL;
 
-	//UNLOCK(dir->lock);
+	UNLOCK(dir->lock);
 	*result = buf;
 	return 0;
 }

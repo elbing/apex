@@ -61,6 +61,9 @@ struct _IO_FILE {
 	struct __locale_struct *locale;
 };
 
+hidden int __lockfile(FILE *);
+hidden void __unlockfile(FILE *);
+
 size_t __stdio_read(FILE *, unsigned char *, size_t);
 size_t __stdio_write(FILE *, const unsigned char *, size_t);
 size_t __stdout_write(FILE *, const unsigned char *, size_t);

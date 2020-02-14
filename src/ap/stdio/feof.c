@@ -17,3 +17,5 @@ int feof(FILE *f)
 	FUNLOCK(f);
 	return ret;
 }
+
+weak_alias(feof, feof_unlocked);

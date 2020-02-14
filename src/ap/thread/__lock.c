@@ -7,32 +7,26 @@
  * in the LICENSE file.
  */
 
-#if !defined(_RESEARCH_SOURCE) && !defined(_PLAN9_SOURCE)
-   This header file is an extension of ANSI/POSIX
-#endif
+#include "sys9.h"
+#include "lock.h"
 
-#ifndef __LOCK_H
-#define __LOCK_H
-
-#include <stdint.h>
-
-typedef struct
+void
+__lock(volatile int *lk)
 {
-	int32_t	key;
-	int32_t	sem;
-} Lock;
-
-#ifdef __cplusplus
-extern "C" {
-#endif
-
-extern	void	lock(Lock*);
-extern	void	unlock(Lock*);
-extern	int	canlock(Lock*);
-extern	int	tas(int*);
-
-#ifdef __cplusplus
+	while(__tas(lk))
+		__sys_sleep(0);
 }
-#endif
 
-#endif
+int
+__canlock(volatile int *lk)
+{
+	if(__tas(lk))
+		return 0;
+	return 1;
+}
+
+void
+__unlock(volatile int *lk)
+{
+	lk[0] = 0;
+}

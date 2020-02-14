@@ -1,6 +1,6 @@
 
 TARGET = libap.a
-DIRS = $(ARCH) bsd crt dirent fenv gen locale math multibyte plan9 posix regex stdio stdlib string
+DIRS = $(ARCH) bsd crt dirent fenv gen locale math multibyte plan9 posix regex stdio stdlib string thread
 
 .PHONY: all
 

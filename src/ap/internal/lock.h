@@ -7,25 +7,29 @@
  * in the LICENSE file.
  */
 
-#include "sys9.h"
-#include "stdio_impl.h"
-#include "lock.h"
+#ifndef __LOCK_H
+#define __LOCK_H
 
-static volatile int flock[1];
 
-int __lockfile(FILE *f)
+typedef struct
 {
-	if(f->lock > 0)
-		return 0;
+	int	val;
+} Lock;
 
-	flock[0] = f->lock;
-	__lock(flock);
-	return 1;
+#ifdef __cplusplus
+extern "C" {
+#endif
 
+extern	void	__lock(volatile int *);
+extern	void	__unlock(volatile int *);
+extern	int	__canlock(volatile int *);
+extern	int	__tas(volatile int *);
+
+#define LOCK(x) __lock(x)
+#define UNLOCK(x) __unlock(x)
+
+#ifdef __cplusplus
 }
+#endif
 
-void __unlockfile(FILE *f)
-{
-	flock[0] = f->lock;
-	__unlock(flock);
-}
+#endif

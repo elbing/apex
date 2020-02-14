@@ -27,7 +27,7 @@ struct a_fork {
 static struct a_fork the_fork[MAXFORKS];
 
 FILE *
-popen(char *cmd, char *mode)
+popen(const char *cmd, const char *mode)
 {
 	int p[2];
 	int myside, hisside, pid;
@@ -51,7 +51,7 @@ popen(char *cmd, char *mode)
 		dup2(hisside, tst(0, 1));
 		for (i=NSYSFILE; i<FOPEN_MAX; i++)
 			close(i);
-		execl("/bin/ape/sh", "sh", "-c", cmd, NULL);
+		execl("/bin/sh", "sh", "-c", cmd, NULL);
 		_exit(1);
 	default:
 		the_fork[ind].pid = pid;

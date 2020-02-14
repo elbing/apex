@@ -51,3 +51,5 @@ int fflush(FILE *f)
 
 	return r;
 }
+
+weak_alias(fflush, fflush_unlocked);

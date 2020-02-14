@@ -8,7 +8,7 @@
 
 #include <dirent.h>
 #include <unistd.h>
-#include "libc.h"
+#include "lock.h"
 
 void seekdir(DIR *dir, long off)
 {
