@@ -314,7 +314,7 @@ void casepi(void)
 	} else
 		Pipe.buf[Pipe.cnt++] = '|';
 
-	getline(buf, NTM);
+	_getline(buf, NTM);
 	j = strlen(buf);
 	if (toolate) {
 		ERROR "Cannot create pipe to %s", buf WARN;

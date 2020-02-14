@@ -20,7 +20,7 @@ char	*cmdname;
 int	yyparse(void);
 void	settype(char *);
 int	getdata(void);
-int	getline(char *);
+int	_getline(char *);
 void	inlineeq(void);
 void	init(void);
 void	init_tbl(void);
@@ -107,7 +107,7 @@ getdata(void)
 	errno = 0;
 	curfile->lineno = 0;
 	printf(".lf 1 %s\n", curfile->fname);
-	while ((type = getline(in)) != EOF) {
+	while ((type = _getline(in)) != EOF) {
 		if (in[0] == '.' && in[1] == 'E' && in[2] == 'Q') {
 			for (i = 11; i < 100; i++)
 				used[i] = 0;
@@ -147,7 +147,7 @@ getdata(void)
 }
 
 int
-getline(char *s)
+_getline(char *s)
 {
 	int c;
 
@@ -185,7 +185,7 @@ void inlineeq(void)
 			sfree(eqnreg);
 			printf(".lf %d\n", curfile->lineno+1);
 		}
-	} while (getline(in) == lefteq);
+	} while (_getline(in) == lefteq);
 	if (*in)
 		printf(".as %d \"%s", ds, in);
 	if (sz1)

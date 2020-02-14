@@ -1059,7 +1059,7 @@ void casecf(void)
 	ptfont();
 }
 
-void getline(char *s, int n)	/* get rest of input line into s */
+void _getline(char *s, int n)	/* get rest of input line into s */
 {
 	int i;
 
@@ -1078,7 +1078,7 @@ void casesy(void)	/* call system */
 {
 	char sybuf[NTM];
 
-	getline(sybuf, NTM);
+	_getline(sybuf, NTM);
 	system(sybuf);
 }
 

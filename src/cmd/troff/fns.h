@@ -39,7 +39,7 @@ int	getname(void);
 void	caseso(void);
 void	caself(void);
 void	casecf(void);
-void	getline(char *s, int n);
+void	_getline(char *s, int n);
 void	casesy(void);
 void	getpn(char *a);
 void	setrpt(void);
