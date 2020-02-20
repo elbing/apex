@@ -7,11 +7,14 @@
  * in the LICENSE file.
  */
 
-#ifndef	__UNISTD_H
-#define	__UNISTD_H
-#ifndef _POSIX_SOURCE
-   This header file is not defined in pure ANSI
+#ifndef	_UNISTD_H
+#define	_UNISTD_H
+
+#ifdef __cplusplus
+extern "C" {
 #endif
+
+#include <features.h>
 
 #define _POSIX_VERSION	200809L
 #define _POSIX_ASYNC_IO -1
@@ -28,6 +31,17 @@
 #define NULL ((void *)0)
 #endif
 #endif
+
+#define __NEED_size_t
+#define __NEED_ssize_t
+#define __NEED_uid_t
+#define __NEED_gid_t
+#define __NEED_off_t
+#define __NEED_pid_t
+#define __NEED_intptr_t
+#define __NEED_useconds_t
+
+#include <bits/alltypes.h>
 
 /* access */
 #define	R_OK		4
@@ -71,12 +85,6 @@
 #define _PC_CHOWN_RESTRICTED	7
 #define _PC_NO_TRUNC		8
 #define _PC_VDISABLE		9
-
-#ifdef __cplusplus
-extern "C" {
-#endif
-
-#include <features.h>
 
 /* standard filenos */
 #define STDIN_FILENO		0

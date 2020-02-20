@@ -18,7 +18,7 @@ extern "C" {
 #define __NEED_FILE
 #define __NEED___isoc_va_list
 #define __NEED_size_t
-
+#define __NEED_uint64_t
 #if __STDC_VERSION__ < 201112L
 #define __NEED_struct__IO_FILE
 #endif

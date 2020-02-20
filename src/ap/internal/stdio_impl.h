@@ -107,4 +107,6 @@ void __ofl_unlock(void);
 FILE *__fopen_rb_ca(const char *, FILE *, unsigned char *, size_t);
 int __fclose_ca(FILE *);
 
+#define MAYBE_WAITERS 0x40000000
+
 #endif
