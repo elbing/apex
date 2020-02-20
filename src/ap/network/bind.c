@@ -22,7 +22,7 @@
 #include <sys/un.h>
 
 /* plan 9 */
-#include "lib.h"
+
 #include "sys9.h"
 #include "priv.h"
 

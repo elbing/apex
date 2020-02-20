@@ -10,7 +10,7 @@
 #include <errno.h>
 #include <sys/stat.h>
 #include "sys9.h"
-#include "lib.h"
+
 #include "dir.h"
 
 int

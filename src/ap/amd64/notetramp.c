@@ -3,7 +3,7 @@
 #include <setjmp.h>
 #include <ureg.h>
 #include "sys9.h"
-#include "lib.h"
+
 
 /* A stack to hold pcs when signals nest */
 #define MAXSIGSTACK 20

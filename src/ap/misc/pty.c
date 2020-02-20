@@ -18,8 +18,10 @@
 
 #include <sys/pty.h>
 #include "sys9.h"
-#include "lib.h"
+
 #include "dir.h"
+
+#define MAFTER  0x0002  /* mount goes after others in union directory */
 
 /*
  * return the name of the slave

@@ -15,7 +15,7 @@
 #include <limits.h>
 #include <sys/stat.h>
 #include "sys9.h"
-#include "lib.h"
+
 
 extern int errno;
 Fdinfo _fdinfo[OPEN_MAX];

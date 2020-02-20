@@ -10,7 +10,7 @@
 #include <string.h>
 #include <pwd.h>
 #include "sys9.h"
-#include "lib.h"
+
 
 static struct passwd holdpw;
 static char dirbuf[40] = "/usr/";

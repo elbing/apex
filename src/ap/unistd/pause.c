@@ -9,7 +9,7 @@
 
 #include <unistd.h>
 #include "sys9.h"
-#include "lib.h"
+
 
 int
 pause(void)

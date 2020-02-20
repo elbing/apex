@@ -9,7 +9,7 @@
 
 #include <unistd.h>
 #include "sys9.h"
-#include "lib.h"
+
 
 pid_t
 setsid(void)

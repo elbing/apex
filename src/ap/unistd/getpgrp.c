@@ -13,7 +13,7 @@
 #include <errno.h>
 #include <stdio.h>
 #include "sys9.h"
-#include "lib.h"
+
 
 pid_t
 getpgrp(void)

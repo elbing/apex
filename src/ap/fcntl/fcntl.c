@@ -13,7 +13,7 @@
 #include <stdarg.h>
 #include <limits.h>
 #include "sys9.h"
-#include "lib.h"
+
 
 /*
  * BUG: advisory locking not implemented

@@ -15,7 +15,7 @@
 #include <stdarg.h>
 #include <errno.h>
 #include "sys9.h"
-#include "lib.h"
+
 
 enum {
 	Profoff,			/* No profiling */

@@ -14,7 +14,7 @@
 #include <signal.h>
 #include <errno.h>
 #include "sys9.h"
-#include "lib.h"
+
 
 static int
 note(int pid, char *msg, char *fmt)

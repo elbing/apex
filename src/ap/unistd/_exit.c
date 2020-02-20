@@ -12,7 +12,7 @@
 #include <string.h>
 #include <signal.h>
 #include "sys9.h"
-#include "lib.h"
+
 
 int _finishing = 0;
 int _sessleader = 0;

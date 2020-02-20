@@ -12,7 +12,7 @@
 #include <fcntl.h>
 #include <errno.h>
 #include "sys9.h"
-#include "lib.h"
+
 
 int
 setpgid(pid_t pid, pid_t pgid)

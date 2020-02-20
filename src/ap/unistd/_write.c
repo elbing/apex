@@ -12,7 +12,7 @@
 #include <limits.h>
 #include <errno.h>
 #include "sys9.h"
-#include "lib.h"
+
 
 ssize_t
 __write(int d, const void *buf, size_t nbytes)

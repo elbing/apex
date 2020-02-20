@@ -10,7 +10,7 @@
 #include <unistd.h>
 #include <errno.h>
 #include "sys9.h"
-#include "lib.h"
+
 
 pid_t
 _fork(void)

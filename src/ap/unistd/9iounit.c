@@ -12,7 +12,7 @@
 #include <string.h>
 #include <fmt.h>
 #include "sys9.h"
-#include "lib.h"
+
 
 /*
  * Format:

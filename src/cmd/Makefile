@@ -8,8 +8,9 @@ CLEANDIRS=$(DIRS:%=clean-%)
 NIDIR = ${HARVEY}/sys/include
 NIOBJDIR = ${HARVEY}/${ARCH}/include
 NCFLAGS += -O0 -static -mno-red-zone -ffreestanding -fno-builtin -fno-omit-frame-pointer -fno-stack-protector -fno-pie -I$(NIDIR) -I$(NIOBJDIR)
+CFLAGS += -D_BSD_SOURCE
 
-PROGRAMS = expr uname kill basename dirname compress
+PROGRAMS = expr uname kill basename dirname compress printf
 MVANDCP = mv cp
 
 .PHONY: $(DIRS) $(PROGRAMS)

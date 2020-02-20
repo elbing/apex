@@ -12,7 +12,7 @@
 #include <limits.h>
 #include <errno.h>
 #include "sys9.h"
-#include "lib.h"
+
 
 int
 __close(int d)

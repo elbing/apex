@@ -10,7 +10,7 @@
 #include <sys/stat.h>
 #include <errno.h>
 #include "sys9.h"
-#include "lib.h"
+
 #include "dir.h"
 
 /* fi is non-null if there is an fd associated with s */

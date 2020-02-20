@@ -11,7 +11,7 @@
 #include <signal.h>
 #include <errno.h>
 #include "sys9.h"
-#include "lib.h"
+
 
 sigset_t _psigblocked;
 

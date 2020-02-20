@@ -17,6 +17,7 @@ $(TARGET): $(OBJ)
 
 install:
 	cp $(TARGET) $(APEXBIN)
+	cp $(TARGET) $(APEXBIN)/sh
 
 clean:
 	rm -f $(OBJ) $(TARGET)

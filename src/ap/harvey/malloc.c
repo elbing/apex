@@ -57,12 +57,10 @@ malloc(size_t size)
 
 	return NULL;
 good:
-	LOCK(lock);
 	/* Allocate off this list */
 	bp = arena.btab[pow];
 	if(bp) {
 		arena.btab[pow] = bp->next;
-		UNLOCK(lock);
 
 		if(bp->magic != 0)
 			abort();
@@ -78,7 +76,6 @@ good:
 		n = (CUTOFF-pow)+2;
 		bp = sbrk(size*n);
 		if((intptr_t)bp == -1) {
-			UNLOCK(lock);
 			return NULL;
 		}
 
@@ -96,11 +93,9 @@ good:
 	else {
 		bp = sbrk(size);
 		if((intptr_t)bp == -1){
-			UNLOCK(lock);
 			return NULL;
 		}
 	}
-	UNLOCK(lock);
 
 	bp->size = pow;
 	bp->magic = MAGIC;
@@ -124,10 +119,8 @@ free(void *ptr)
 
 	bp->magic = 0;
 	l = &arena.btab[bp->size];
-	LOCK(lock);
 	bp->next = *l;
 	*l = bp;
-	UNLOCK(lock);
 }
 
 void*

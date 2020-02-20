@@ -12,7 +12,7 @@
 #include <stdlib.h>
 #include <sys/wait.h>
 #include "sys9.h"
-#include "lib.h"
+
 
 int
 system(const char *s)
