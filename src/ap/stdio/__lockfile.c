@@ -24,7 +24,7 @@ int __lockfile(FILE *f)
 	while ((owner = a_cas(&f->lock, 0, tid|MAYBE_WAITERS))) {
 		if ((owner & MAYBE_WAITERS) ||
 		    a_cas(&f->lock, owner, owner|MAYBE_WAITERS)==owner)
-			return 1; //__futexwait(&f->lock, owner|MAYBE_WAITERS, 1); FUTEX_AWIT!!!
+			semacquire(&f->waiters, 1); //__futexwait(&f->lock, owner|MAYBE_WAITERS, 1);
 	}
 	return 1;
 }
@@ -32,5 +32,5 @@ int __lockfile(FILE *f)
 void __unlockfile(FILE *f)
 {
 	if (a_swap(&f->lock, 0) & MAYBE_WAITERS)
-		f->lock = 0; //__wake(&f->lock, 1, 1);
+		semrelease(&f->waiters, 1); //__wake(&f->lock, 1, 1);
 }

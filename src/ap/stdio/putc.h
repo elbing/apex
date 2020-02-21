@@ -6,6 +6,7 @@
  * license that can be found in the LICENSE.mit file.
  */
 
+#include "sys9.h"
 #include "stdio_impl.h"
 #include "atomic_arch.h"
 #include <sys/wait.h>
@@ -18,7 +19,7 @@ static int locking_putc(int c, FILE *f)
 	if (a_cas(&f->lock, 0, MAYBE_WAITERS-1)) __lockfile(f);
 	c = putc_unlocked(c, f);
 	if (a_swap(&f->lock, 0) & MAYBE_WAITERS)
-		f->lock = 1; //__wake(&f->lock, 1, 1); -> FUTEX_WAKE!!!
+		semrelease(&f->waiters, 1); //__wake(&f->lock, 1, 1);
 	return c;
 }
 

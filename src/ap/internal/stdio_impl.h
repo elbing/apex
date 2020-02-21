@@ -50,7 +50,7 @@ struct _IO_FILE {
 	signed char mode;
 	signed char lbf;
 	volatile int lock;
-	volatile int waiters;
+	/*volatile*/ int waiters;
 	void *cookie;
 	off_t off;
 	char *getln_buf;
