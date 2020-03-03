@@ -1,6 +1,6 @@
 
 TARGET = libap.a
-DIRS = $(ARCH) conf crt dirent env fcntl fenv gen harvey legacy locale math misc multibyte network passwd regex signal stat stdio stdlib string temp termios thread time unistd
+DIRS = $(ARCH) conf crt dirent env errno fcntl fenv gen harvey legacy locale math misc multibyte network passwd regex signal stat stdio stdlib string temp termios thread time unistd
 
 .PHONY: all
 
@@ -12,6 +12,7 @@ $(TARGET):
 	cd crt; $(MAKE) $(MFLAGS)
 	cd dirent; $(MAKE) $(MFLAGS)
 	cd env; $(MAKE) $(MFLAGS)
+	cd errno; $(MAKE) $(MFLAGS)
 	cd fcntl; $(MAKE) $(MFLAGS)
 	cd fenv; $(MAKE) $(MFLAGS)
 	cd gen; $(MAKE) $(MFLAGS)

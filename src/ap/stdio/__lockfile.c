@@ -9,13 +9,14 @@
 #include "sys9.h"
 #include "stdio_impl.h"
 #include "atomic_arch.h"
-#include <sys/wait.h>
+//#include <sys/wait.h>
 
 
 /* Crappy, awaiting pthreads implementation */
 
 int __lockfile(FILE *f)
 {
+/*
 	int owner = f->lock; pid_t tid = getpid(); //__pthread_self()->tid;
 	if ((owner & ~MAYBE_WAITERS) == tid)
 		return 0;
@@ -27,10 +28,22 @@ int __lockfile(FILE *f)
 			semacquire(&f->waiters, 1); //__futexwait(&f->lock, owner|MAYBE_WAITERS, 1);
 	}
 	return 1;
+*/
+    if(adec(&f->lock) < 0)
+        while(semacquire(&f->waiters, 1) < 0){
+        /* interrupted, retry */
+    }
+    // FLOCK checks if >=0 for calling this function
+    f->lock = -1;
+    return 1;
 }
 
 void __unlockfile(FILE *f)
 {
+/*
 	if (a_swap(&f->lock, 0) & MAYBE_WAITERS)
 		semrelease(&f->waiters, 1); //__wake(&f->lock, 1, 1);
+*/
+    if(ainc(&f->lock) >= 0)
+        semrelease(&f->waiters, 1);
 }

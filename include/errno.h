@@ -14,13 +14,12 @@ extern "C" {
 #endif
 
 #include <features.h>
+#include <bits/errno.h>
 
-extern int errno;
+int errno;
 
 #define EPLAN9	1002
 #define EGREG	1003 /* Old joke */
-
-#include <sys/errno.h>
 
 #ifdef _GNU_SOURCE
 extern char *program_invocation_short_name, *program_invocation_name;

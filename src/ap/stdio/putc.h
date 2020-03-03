@@ -9,24 +9,30 @@
 #include "sys9.h"
 #include "stdio_impl.h"
 #include "atomic_arch.h"
-#include <sys/wait.h>
+//#include <sys/wait.h>
 
 #ifdef __GNUC__
 __attribute__((__noinline__))
 #endif
 static int locking_putc(int c, FILE *f)
 {
+/*
 	if (a_cas(&f->lock, 0, MAYBE_WAITERS-1)) __lockfile(f);
 	c = putc_unlocked(c, f);
 	if (a_swap(&f->lock, 0) & MAYBE_WAITERS)
 		semrelease(&f->waiters, 1); //__wake(&f->lock, 1, 1);
 	return c;
+*/
+    c = putc_unlocked(c, f);
+    if(ainc(&f->lock) >= 0)
+        semrelease(&f->waiters, 1);
+    return c;
 }
 
 static inline int do_putc(int c, FILE *f)
 {
-	int l = f->lock; pid_t tid = getpid();
-	if (l < 0 || l && (l & ~MAYBE_WAITERS) == tid) //__pthread_self()->tid)
+	int l = f->lock; //pid_t tid = getpid();
+	if (l < 0) // || l && (l & ~MAYBE_WAITERS) == tid) //__pthread_self()->tid)
 		return putc_unlocked(c, f);
 	return locking_putc(c, f);
 }
