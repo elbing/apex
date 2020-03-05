@@ -10,6 +10,8 @@
 #include <string.h>
 #include "locale_impl.h"
 
+#define EPLAN9  1002
+
 #define E(a,b) ((unsigned char)a),
 static const unsigned char errid[] = {
 #include "__strerror.h"
@@ -20,6 +22,8 @@ static const unsigned char errid[] = {
 static const char errmsg[] =
 #include "__strerror.h"
 ;
+
+extern char _plan9err[];
 
 char *__strerror_l(int e, locale_t loc)
 {
@@ -33,11 +37,17 @@ char *__strerror_l(int e, locale_t loc)
 	}
 	for (i=0; errid[i] && errid[i] != e; i++);
 	for (s=errmsg; i; s++, i--) for (; *s; s++);
-	return (char *)LCTRANS(s, LC_MESSAGES, loc);
+        return (char *)__lctrans_cur(s);
+	//return (char *)LCTRANS(s, LC_MESSAGES, loc);
 }
 
 char *strerror(int e)
 {
+
+    if(e == EPLAN9) {
+        return _plan9err;
+    }
+
 	return __strerror_l(e, 0/*CURRENT_LOCALE*/);
 }
 
