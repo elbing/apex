@@ -9,6 +9,10 @@
 #include <string.h>
 #include <errno.h>
 
+/* XSI-compliant
+ * Old GNU-specific returning char * is not
+ * provided after POSIX.1-2008 and GLib 2.13.
+ */
 int strerror_r(int err, char *buf, size_t buflen)
 {
 	char *msg = strerror(err);
