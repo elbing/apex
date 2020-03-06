@@ -14,7 +14,7 @@
 
 /* make this global, so programs can look at it if errno is unilluminating */
 
-/* see also: ../stdio/strerror.c, with errno-> string mapping */
+/* see also: errno/strerror.c, with errno-> string mapping */
 
 char _plan9err[ERRMAX];
 
