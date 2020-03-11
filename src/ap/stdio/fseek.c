@@ -32,7 +32,7 @@ int __fseeko_unlocked(FILE *f, off_t off, int whence)
 	return 0;
 }
 
-int fseeko(FILE *f, off_t off, int whence)
+int __fseeko(FILE *f, off_t off, int whence)
 {
 	int result;
 	FLOCK(f);
@@ -45,3 +45,7 @@ int fseek(FILE *f, long off, int whence)
 {
 	return fseeko(f, off, whence);
 }
+
+weak_alias(__fseeko, fseeko);
+
+weak_alias(fseeko, fseeko64);

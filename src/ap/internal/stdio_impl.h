@@ -72,6 +72,8 @@ int __stdio_close(FILE *);
 
 size_t __string_read(FILE *, unsigned char *, size_t);
 
+hidden void __stdio_exit_needed(void);
+
 int __toread(FILE *);
 int __towrite(FILE *);
 

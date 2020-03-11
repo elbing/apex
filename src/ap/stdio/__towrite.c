@@ -25,9 +25,8 @@ int __towrite(FILE *f)
 	return 0;
 }
 
-void __stdio_exit_needed(void);
-
-void __towrite_needs_stdio_exit()
+hidden void __towrite_needs_stdio_exit()
 {
-	__stdio_exit_needed();
+    __stdio_exit_needed();
 }
+

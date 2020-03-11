@@ -15,7 +15,7 @@
  * The purpose is checking if there is any data and proper flags,
  * and then setting f->lbf to -1 for sending it to stdio_write.
  * FIONREAD is the only one ioctl emulation for Harvey due to sockets
- * implementation in lib/ap/bsd.
+ * implementation in apex/src/ap/misc.
  */
 static int dummy(FILE *f)
 {

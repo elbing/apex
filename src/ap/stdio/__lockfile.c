@@ -33,8 +33,6 @@ int __lockfile(FILE *f)
         while(semacquire(&f->waiters, 1) < 0){
         /* interrupted, retry */
     }
-    // FLOCK checks if >=0 for calling this function
-    f->lock = -1;
     return 1;
 }
 

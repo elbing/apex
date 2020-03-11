@@ -21,4 +21,4 @@ if(~ $force n && test -e $2 && ! test -d $2){
 	exit 'usage'
 }
 
-exec cp -gux $1 $2
+exec /$cputype/bin/cp -gux $1 $2
