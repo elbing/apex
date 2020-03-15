@@ -1,3 +1,4 @@
+include $(APEX)/src/$(OS).inc
 
 TARGET = libap.a
 DIRS = $(ARCH) conf crt dirent env errno fcntl fenv gen harvey legacy locale math misc multibyte network passwd regex signal stat stdio stdlib string temp termios thread time unistd
@@ -7,6 +8,7 @@ DIRS = $(ARCH) conf crt dirent env errno fcntl fenv gen harvey legacy locale mat
 all: $(TARGET) $(DIRS)
 
 $(TARGET):
+	rm $(APEXLIB)/$(TARGET)
 	cd $(ARCH); $(MAKE) $(MFLAGS)
 	cd conf; $(MAKE) $(MFLAGS)
 	cd crt; $(MAKE) $(MFLAGS)
