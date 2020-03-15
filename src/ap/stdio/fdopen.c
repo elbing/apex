@@ -50,8 +50,11 @@ FILE *fdopen(int fd, const char *mode)
 
 	/* Activate line buffered mode for terminals */
 	f->lbf = EOF;
-	if (!(f->flags & F_NOWR) && !ioctl(fd, FIONREAD, &f->buf_size))
-		f->lbf = '\n';
+    /* Harvey doesn't implement line buffered mode for terminals.
+     * Nor terminals theyselves :-).
+     */
+//  if (!(f->flags & F_NOWR) && !__syscall(SYS_ioctl, fd, TCGETS, &tio))
+//		f->lbf = '\n';
 
 	/* Initialize op ptrs. No problem if some are unneeded. */
 	f->read = __stdio_read;

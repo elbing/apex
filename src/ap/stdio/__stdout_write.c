@@ -10,27 +10,18 @@
 #include <sys/ioctl.h>
 
 /*
- * In original, it was calling ioctl for checking TIOCGWINSZ
- * Harvey hasn't any implementation of terminal devices in that way.
- * The purpose is checking if there is any data and proper flags,
- * and then setting f->lbf to -1 for sending it to stdio_write.
- * FIONREAD is the only one ioctl emulation for Harvey due to sockets
- * implementation in apex/src/ap/misc.
+ * In original musl source, it was calling ioctl for checking TIOCGWINSZ
+ * Harvey hasn't any implementation of terminal devices in that way (nor any other).
+ * The purpose is checking if there is any data and proper buffer flags,
+ * and then setting f->lbf (FILE linebuffer) to -1 for sending it to stdio_write.
+ * We'll keep this due to compatibility with musl libc.
  */
-static int dummy(FILE *f)
-{
-	if (ioctl(f->fd, FIONREAD, &f->buf_size))
-		return 0;
-	/* FIONREAD will never return -1 as TIOCGWINSZ */
-	return -1;
-
-}
 
 size_t __stdout_write(FILE *f, const unsigned char *buf, size_t len)
 {
 	//struct winsize wsz;
 	f->write = __stdio_write;
-	if (!(f->flags & F_SVB) && dummy(f))
-		f->lbf = -1;
+//  if (!(f->flags & F_SVB) && __syscall(SYS_ioctl, f->fd, TIOCGWINSZ, &wsz))
+//		f->lbf = -1;
 	return __stdio_write(f, buf, len);
 }
