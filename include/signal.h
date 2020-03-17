@@ -86,8 +86,10 @@ struct sigaction {
 	sigset_t	sa_mask;
 	int		sa_flags;
 };
-/* values for sa_flags */
+/* values for sa_flags amd64 ¡¡this has to be placed at $ARCH/bits!!!
+   After reworking signals in APEX */
 #define SA_NOCLDSTOP	1
+#define SA_RESETHAND  0x80000000
 
 /* first argument to sigprocmask */
 #define SIG_BLOCK	1
