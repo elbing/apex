@@ -13,5 +13,5 @@
 int
 getdtablesize(void)
 {
-	return OPEN_MAX;
+	return INT_MAX;
 }

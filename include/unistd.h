@@ -153,6 +153,9 @@ extern int chown(const char *, uid_t, gid_t);
 extern int  symlink(const char *, const char *);
 extern ssize_t  readlink(const char *, char*, size_t);
 
+/* GNU emu */
+int getdtablesize(void);
+
 /* input and output primitives */
 extern int __pipe(int *);
 #define pipe __pipe
