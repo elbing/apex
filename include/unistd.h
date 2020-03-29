@@ -175,9 +175,11 @@ extern off_t lseek(int, off_t, int);
 extern pid_t tcgetpgrp(int);
 extern int tcsetpgrp(int, pid_t);
 
-#ifdef _REENTRANT_SOURCE
 extern char *getlogin_r(char *, int);
-#endif
+int gethostname(char *, size_t);
+int sethostname(const char *, size_t);
+int getdomainname(char *, size_t);
+int setdomainname(const char *, size_t);
 
 /* berkeley specific functions */
 extern int	getopt(int, char* const*, const char*);

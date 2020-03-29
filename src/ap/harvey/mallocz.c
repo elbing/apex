@@ -11,7 +11,7 @@
 #include <string.h>
 
 void*
-_MALLOCZ(int n, int clr)
+mallocz(size_t n, int clr)
 {
 	void *v;
 

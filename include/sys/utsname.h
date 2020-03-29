@@ -16,6 +16,7 @@ struct utsname {
 	char	*release;
 	char	*version;
 	char	*machine;
+    char    *domainname;
 };
 
 #ifdef __cplusplus

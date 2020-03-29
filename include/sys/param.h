@@ -19,6 +19,7 @@ extern "C" {
 #endif
 
 #define NOFILES_MAX 100
+#define MAXHOSTNAMELEN 256             /* max hostname size */
 
 #ifdef __cplusplus
 }

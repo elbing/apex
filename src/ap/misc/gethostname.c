@@ -15,7 +15,7 @@
 #include <string.h>
 
 int
-gethostname(char *name, int namelen)
+gethostname(char *name, size_t namelen)
 {
 	int n, fd;
 	char buf[128];

@@ -12,7 +12,6 @@
 #include <inttypes.h>
 #include <stdint.h>
 #include <sys/types.h>
-#include "lock.h"
 
 enum
 {
